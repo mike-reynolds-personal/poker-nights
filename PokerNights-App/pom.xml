@@ -179,6 +179,7 @@
 					</includes>
 				</configuration>
 			</plugin>
+			<!-- Not currently working (probably out-dated)
 			<plugin>
 			<groupId>com.samaxes.maven</groupId>
 			<artifactId>minify-maven-plugin</artifactId>
@@ -225,10 +226,11 @@
 				</execution>
 			</executions>
 		</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+		-->
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
 		</plugins>
 	</build>
 
