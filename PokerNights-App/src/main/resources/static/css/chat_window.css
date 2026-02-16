@@ -1,0 +1,74 @@
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  width: 5px;
+  background: #343a40;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 1em;
+  background-color: #808080;
+  outline: 1px solid slategrey;
+  border-radius: 1rem;
+}
+
+.messages-box,
+.chat-box {
+  overflow-y: scroll;
+  height: 25vh;
+  margin-bottom: 5px;
+}
+
+.chat-input {
+  	border: 1px solid slategrey;
+    border-radius: 4px;
+    background-color: #292b2c;
+}
+.chat-head {
+	border-radius: 50%!important;
+	width: 35px;
+	height: 35px;
+}
+.text-small {
+  font-size: 0.8rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+input::placeholder {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.message-holder {
+	align-items: flex-start;
+	display: flex;
+	max-width: 96%;
+}
+.message-text-bg {
+	padding: .5rem!important;
+	margin-bottom: .5rem!important;
+	margin-right: .5rem!important;
+    border-radius: .25rem!important;
+}
+.message-receive-text {
+	font-size: 0.8rem;
+	color: #fff!important;
+    margin-bottom: 0!important;
+    margin-top: 0;
+}
+.message-send-text {
+	font-size: 0.8rem;
+    color: #6c757d!important;
+    margin-bottom: 0!important;
+    margin-top: 0;
+}
+.message-time {
+	color: #6c757d!important;
+
+    margin-bottom: .5rem;
+}

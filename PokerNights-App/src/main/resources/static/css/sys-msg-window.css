@@ -1,0 +1,48 @@
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  width: 5px;
+  background: #343a40;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 1em;
+  background-color: #808080;
+  outline: 1px solid slategrey;
+  border-radius: 1rem;
+}
+
+.system-message-container {
+	top: 65px;
+	position: absolute;
+ 	font-size: 0.7rem;
+ 	height: 100px;
+}
+.system-message-area {
+	overflow-y: scroll;
+	height: 100px;
+	margin: 0.4em;
+}
+
+.sys-msg-table>tbody {
+	display: table-row-group;
+	padding: 0px;
+}
+.sys-msg-table>tbody>tr {
+	display: flex;
+}
+.sys-msg-table>tbody>tr>td {
+	font-size: 0.7rem;
+	padding-left: 0.4rem;
+	padding-right: 0.5rem;
+	color: grey;
+}
+.sys-msg-table>tbody>tr>th {
+	padding: 0px;
+	color: gray;
+	font-size: 0.8rem;
+    flex-grow: 1;
+	flex-basis: 0;
+}

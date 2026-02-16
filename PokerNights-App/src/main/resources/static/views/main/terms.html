@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>Poker Rooms Now</title>
+ 	<meta name="description" content="Free private Texas Hold'em poker games with friends and colleagues">
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/webjars/font-awesome/5.13.0/css/all.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+	<link rel="stylesheet" href="/css/custom.css" />
+</head>
+
+<body>
+<h1 class="hidden-at-start">Poker Rooms Now | Home</h1>
+<!-- Static navbar -->
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top justify-content-center">
+	<a class="navbar-brand m-0 mr-2">
+	   <img src="/images/logo.png" width="30" height="30" alt="">
+	</a>
+    <a class="navbar-brand">Poker Rooms Now</a>
+	  <div class="collapse navbar-collapse">
+	    <ul class="navbar-nav mr-auto mt-1">
+
+	      <li class="nav-item">
+	        <a class="nav-link" href="/">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/how-to-play">How to Play</a>
+	      </li>
+	      <!-- Tools drop-down -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Tools
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="/evaluator">Hand Evaluator</a>
+				<a class="dropdown-item" href="/sidepots">Side Pot Calculator</a>
+			</div>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/admin">Host Admin</a>
+	      </li>
+	      <!-- About drop-down -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          About
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="privacy.html">Privacy</a>
+				<a class="dropdown-item" href="cookies.html">Cookies</a>
+				<a class="dropdown-item active" href="terms.html">Terms of Use</a>
+			</div>
+	      </li>
+	    </ul>
+  
+	  <!-- Login Controls -->
+	  <form class="form-group form-inline nav">
+	  	<!-- <button id="signin-button" class="btn btn-primary dealer-button mr-sm-2">Sign&nbsp;In</button>-->
+		<a id="createGame" href="/schedule-game?gameType=texas_holdem" role="button" class="btn btn-primary dealer-button mr-sm-2">Create&nbsp;Game</a>
+		<button id="logout-button" class="btn btn-primary dealer-button mr-sm-2 hidden-at-start" type="submit">Logout</button>
+	  </form>
+   </div>
+</nav><!-- End the navigation bar -->
+
+ <!-- Main content area -->
+<main class="bd-content" style="padding: 90px;">
+
+<a href="https://www.iubenda.com/terms-and-conditions/96845548" class="iubenda-white no-brand iubenda-embed iub-body-embed" title="Terms and Conditions">Terms and Conditions</a>
+<script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);
+</script>
+	
+</main>
+	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

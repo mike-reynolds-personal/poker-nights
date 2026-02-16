@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>Poker Rooms Now - Administration</title>
+ 	
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/webjars/font-awesome/5.13.0/css/all.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+	<link rel="stylesheet" href="/css/custom.css" />
+
+</head>
+
+<body>
+<!-- Static navbar -->
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top justify-content-center">
+	<a class="navbar-brand m-0 mr-2">
+	   <img src="/images/logo.png" width="30" height="30" alt="">
+	</a>
+    <a class="navbar-brand">Poker Rooms Now</a>
+	  <div class="collapse navbar-collapse">
+	    <ul class="navbar-nav mr-auto mt-1">
+
+	      <li class="nav-item">
+	        <a class="nav-link" href="/">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/how-to-play">How to Play</a>
+	      </li>
+	      <!-- Tools drop-down -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Tools
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="/evaluator">Hand Evaluator</a>
+				<a class="dropdown-item" href="/sidepots">Side Pot Calculator</a>
+			</div>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" href="/admin">Host Admin</a>
+	      </li>
+	      <!-- About drop-down -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          About
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="views/main/privacy.html">Privacy</a>
+				<a class="dropdown-item" href="views/main/cookies.html">Cookies</a>
+				<a class="dropdown-item" href="views/main/terms.html">Terms of Use</a>
+			</div>
+	      </li>
+	    </ul>
+  
+	  <!-- Login Controls -->
+	  <form class="form-group form-inline nav">
+	  	<button id="signin-button" class="btn btn-primary dealer-button mr-sm-2">Sign&nbsp;In</button>
+		<a id="createGame" href="/schedule-game?gameType=texas_holdem" role="button" class="btn btn-primary dealer-button mr-sm-2">Create&nbsp;Game</a>
+		<button id="logout-button" class="btn btn-primary dealer-button mr-sm-2 hidden-at-start" type="submit">Logout</button>
+	  </form>
+   </div>
+</nav><!-- End the navigation bar -->
+
+ <!-- Main content area -->
+<main class="bd-content " style="padding-top: 90px;">
+	<ul class="nav nav-tabs">
+		<li class="nav-item"><a class="nav-link active" href="#" id="gamesTab">Stored Games</a></li>
+		<li class="nav-item"><a class="nav-link" href="#" id="accountsTab">Accounts</a></li>
+		<li class="nav-item"><a class="nav-link" href="#" id="activeGamesTab">Active Games</a></li>
+		<li class="nav-item"><a class="nav-link" href="#" id="feedbackTab">Feedback</a></li>
+	</ul>
+
+	<div id="gamesView">
+		<div class="form-group form-inline ml-4 p-2">
+			<div class="form-row p-1">
+				<input id="txtGameId" type="text" class="form-control" placeholder="Game ID" required>
+				<button id="searchById" type="submit" class="btn btn-success ml-2">Load</button>
+				<button id="clearById" type="submit" class="btn btn-primary ml-2">All</button>
+			</div>
+		</div>
+			
+		<!-- Settings -->
+		<div class="jumbotron jumbotron-fluid mr-4 ml-4 p-2" style="border-radius: 10px">
+		<div class="container"  style="max-width: 1400px">
+	   	<p class="lead" style="display: inline-flex;">Stored Games
+	    	<a class="pl-3 pt-0" href="#" id="setPagePrev"><i class="fas fa-arrow-circle-left"></i></a>
+	    	<a class="pl-1" href="#" id="setPageNext"><i class="fas fa-arrow-circle-right"></i></a>
+	    </p>
+	    <div class="row" style="max-height: 250px; overflow-y: scroll;">
+	         <div class="row">
+	         	<table class="stats-table flex-fill ml-2 table-striped">
+				<tbody id="storedGames"></tbody>
+	         	</table>
+	        </div>
+		</div>
+		</div>
+	  </div>
+	  
+	  <!-- Round History -->
+	  <div class="jumbotron jumbotron-fluid m-4 p-2" style="border-radius: 10px">
+		<div class="container" style="max-width: 1400px">
+	    <p class="lead" id="rhLabel">Round History</p>
+	    <div class="row" style="max-height: 350px; overflow-y: scroll;">
+	         <div class="row">
+	         	<table class="stats-table flex-fill ml-2">
+				<tbody id="gameHistory"></tbody>
+	         	</table>
+	        </div>
+		</div>
+		</div>
+	  </div>
+	  
+	  <!-- Player Actions -->
+	  <div class="jumbotron jumbotron-fluid m-4 p-2" style="border-radius: 10px">
+		<div class="container">
+	    <p class="lead" id="paLabel">Actions</p>
+	    <div class="row" style="max-height: 350px; overflow-y: scroll;">
+	         <div class="row">
+	         	<table class="stats-table flex-fill ml-2">
+				<tbody id="actionHistory"></tbody>
+	         	</table>
+	        </div>
+		</div>
+		</div>
+	  </div>
+  </div>
+  <div id="accountsView">
+  		<!-- All accounts -->
+		<div class="jumbotron jumbotron-fluid m-4 p-2" style="border-radius: 10px">
+		<div class="container" style="max-width: 1400px">
+	   	<p class="lead" style="display: inline-flex;">Accounts
+	    	<a class="pl-3 pt-0" href="#" id="accPagePrev"><i class="fas fa-arrow-circle-left"></i></a>
+	    	<a class="pl-1" href="#" id="accPageNext"><i class="fas fa-arrow-circle-right"></i></a>
+	    </p>
+	    <div class="row" style="max-height: 750px; overflow-y: scroll;">
+	         <div class="row">
+	         	<table class="stats-table flex-fill ml-2 table-striped">
+				<tbody id="accountsTable"></tbody>
+	         	</table>
+	        </div>
+		</div>
+		</div>
+	  </div>
+  </div>
+  
+  <div id="activeGamesView">
+  		<!-- All Games -->
+		<div class="jumbotron jumbotron-fluid m-4 p-2" style="border-radius: 10px">
+		<div class="container" style="max-width: 1400px">
+	    <p class="lead">Active Games</p>
+	    <div class="row" style="max-height: 750px; overflow-y: scroll;">
+	         <div class="row">
+	         	<table class="stats-table flex-fill ml-2 table-striped">
+				<tbody id="activeGamesTable"></tbody>
+	         	</table>
+	        </div>
+		</div>
+		</div>
+	  </div>
+  </div>
+  
+    <div id="feedbackView">
+  		<!-- All Games -->
+		<div class="jumbotron jumbotron-fluid m-4 p-2" style="border-radius: 10px">
+		<div class="container" style="max-width: 1400px">
+	   	<p class="lead" style="display: inline-flex;">Feedback
+	    	<a class="pl-3 pt-0" href="#" id="feedPagePrev"><i class="fas fa-arrow-circle-left"></i></a>
+	    	<a class="pl-1" href="#" id="feedPageNext"><i class="fas fa-arrow-circle-right"></i></a>
+	    </p>
+	    <div class="row" style="max-height: 750px; overflow-y: scroll;">
+	         <div class="row">
+	         	<table class="stats-table flex-fill ml-2 table-striped">
+				<tbody id="feedbackTable"></tbody>
+	         	</table>
+	        </div>
+		</div>
+		</div>
+	  </div>
+  </div>
+  
+</main>
+
+    <!--  ================================================== -->
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	
+	<script src="/js/session.js"></script>
+	<script src="/js/admin.js"></script>
+</body>
+</html>

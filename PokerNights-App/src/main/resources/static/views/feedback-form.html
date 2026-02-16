@@ -1,0 +1,133 @@
+<div id="modalFeedbackForm" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Submit Feedback</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+         	<form>
+			<div class="form-group">
+			    <label for="feedbackSubject">Subject</label>
+			    <select class="form-control" id="feedbackSubject">
+			      <option selected="selected" data-val="Let us know how you got on with your game...">General feedback</option>
+			      <option data-val="Please include details of the steps leading to the error if you can...">Error report</option>
+			      <option data-val="What do you think would improve PokerRoomsNow Texas Hold'em?">Feature request</option>
+			    </select>
+			</div>
+			<div class="form-group">
+				<textarea class="form-control"
+					rows="5" 
+					id="feedbackBody"
+					style="font-size:0.8rem;"></textarea>
+			</div>
+			<!-- 
+			<div class="form-group">
+				<div class="row">
+				<div class="rating">
+			      <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Loved it">5 stars</label>
+			      <input type="radio" id="star4" name="rating" value="4" /><label for="star4">4 stars</label>
+			      <input type="radio" id="star3" name="rating" value="3" /><label for="star3">3 stars</label>
+			      <input type="radio" id="star2" name="rating" value="2" /><label for="star2">2 stars</label>
+			      <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="I'm not happy">1 star</label>
+			    </div>
+				</div>
+			</div>
+			-->
+         	</form>
+	 	<!-- Footer -->
+		<div class="modal-footer p-0 pt-1">
+			<div class="form-check">
+				<input class="form-check-input" checked="true" type="checkbox" id="feedbackScreenshot">
+				<label class="form-check-label" for=feedbackScreenshot>Include screenshot?</label>
+			</div>
+			<div class="ml-auto">
+				<button id="feedbackSubmit" type="submit" class="btn btn-success dealer-button disabled">Submit</button>
+			</div>
+		</div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+
+/** Get the game's id from the address */
+function getGameId() {
+    var pathArray = window.location.pathname;
+    return pathArray.substring(pathArray.lastIndexOf('/') + 1).replace('#','');
+}
+var feedbackScreenshot;
+$("#modalFeedbackForm").on('shown.bs.modal', function () {
+	  $('#feedbackSubject').trigger('focus');
+	  	html2canvas(document.querySelector("#tableScreenArea"), { 'removeContainer': true, 'useCORS': true })
+		.then(canvas => feedbackScreenshot = canvas.toDataURL("image/png") );
+	  	$("#feedbackSubject").change();
+	  	
+	});
+
+$("#feedbackSubject").on('keyup change', function() {
+	let hint = $('#feedbackSubject option:selected').data('val');
+	$('#feedbackBody').attr('placeholder', hint);
+});
+
+$("#feedbackBody").on('keyup change',function() {
+	let disable = false;
+	if ($(this).val() == '') {
+		disable = true;
+	}
+	$('#feedbackSubmit').removeClass('disabled');
+	$('#feedbackSubmit').prop('disabled', disable);
+});
+
+$("#feedbackSubmit").click(function() {
+	let sub = $("#feedbackSubject").val();
+	let body = $("#feedbackBody").val();
+	let handle = identity.playerHandle;
+	
+	if (sub=='' || body=='') {
+		return;
+	}
+	
+	let screen = null;
+	if ( $("#feedbackScreenshot").is(":checked") ) {
+		screen = feedbackScreenshot;
+		feedbackScreenshot = null;
+	}
+	
+	var fDetail = JSON.stringify(
+	    	{
+	    		'subject': sub,
+	    		'body':body,
+	    		'playerId': identity.playerId,
+	    		'playerEmail': identity.playerEmail,
+	    		'gameRound': currentGame ? currentGame.roundNum : -1,
+	    		'gameId': getGameId(),
+	    		'screen': screen
+	    	});
+
+	$.ajax({
+		  url: '/feedback/',
+		  type: 'POST',
+		  data: fDetail,
+		  contentType: 'application/json; charset=utf-8',
+		  success: function(data) {
+			if ( !data ) {
+				$("#errorLabel").text('There was an error trying to submit your feedback');
+				return;
+			}
+			$("#thanks").toast('show');
+			$("#modalFeedbackForm").modal('hide');
+		  }
+		}).done(function(msg){  })
+	    .fail(function(xhr, status, error) {
+	    	console.log(error);
+	    	$("#modalFeedbackForm").modal('hide');
+	    	return;
+	    });
+	
+	return false;
+});
+</script>

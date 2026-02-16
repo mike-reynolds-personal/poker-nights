@@ -1,0 +1,8 @@
+.modal-backdrop {
+	background-image: url('/gateway-content/images/login-backdrop.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	z-index: 1;
+	background-color: #708090;
+}

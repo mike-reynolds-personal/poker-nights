@@ -1,0 +1,35 @@
+<div id="modalAccount" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" id="copyAreaAccount">
+      <div class="modal-header">
+        <h5 class="modal-title" id="accountModalLabel">
+        	Account:<label class="ml-2" id="accountNum"></label>
+        	<a href="#" id="copyAccount" title="Copy"><i class="far fa-copy"></i></a>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          	<div class="row justify-content-center mt-2">
+          	<img class="player-avatar" id="profilePic" style="position: relative;bottom: -5px;right: 0px;">
+          	<table class="flex-fill col-sm-11 mt-3">
+				<tbody id="accountArea"></tbody>
+          	</table>
+        </div>
+			<div class="row mt-3 justify-content-center">
+		      	<h5>All Game Statistics</h5>
+		      	<table class="flex-fill col-sm-11">
+					<tbody id="accountStatsArea"></tbody>
+		      	</table>
+		    </div>
+	        <div id="upgradeArea" class="row justify-content-center mt-3">
+	        	<a type="button" target="_blank" href="/account/upgrade" class="btn btn-primary">Upgrade Account</a>
+	        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

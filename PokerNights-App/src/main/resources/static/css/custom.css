@@ -1,0 +1,230 @@
+@charset "ISO-8859-1";
+html, body{
+    height:100%;
+}
+.flex-grow {
+    flex: 1 0 auto;
+}
+.schedule-game-label {
+	min-width: 120px!important;
+	display: block!important;
+}
+.schedule-form-group {
+	margin-bottom: 0.5rem;
+}
+.inGameTimer {
+	position: absolute;
+	top: 105px;
+	border: 1px solid slategrey;
+    border-radius: 12px;
+    padding: 3px 7px 3px 7px;
+    background-color: #292b2c;
+	font-size: 0.75rem;
+	color: slategrey;
+}
+.timer-alarm {
+	color: red;
+	border-color: red;
+}
+.player-avatar {
+    width: 3rem;
+    position: absolute;
+    bottom: 48px;
+    right: 30px;
+	border-radius: 50%!important;
+	border: 1px solid slategrey;
+}
+
+.schedule-game>.modal-backdrop {
+	background-image: url('../images/table-branded.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	z-index: 1;
+	background-color: #708090;
+}
+
+.inner-table>tbody {
+	display: table-row-group;
+    flex-grow: 1;
+}
+.inner-table>tbody>tr {
+	text-align: center;
+	justify-content: center!important;
+	align-items: center!important;
+	display: inherit;
+	white-space: nowrap;
+}
+.inner-table>tbody>tr>td {
+	align-content: center!important;
+	padding: 0px;
+	color: black;
+}
+.inner-table>tbody>tr>th {
+	padding-left: 0.25rem;
+	padding-right: 0.25rem;
+	color: gray;
+    flex-grow: 1;
+	flex-basis: 0;
+}
+
+.stats-table>tbody {
+	display: table-row-group;
+}
+.stats-table>tbody>tr {
+	text-align: center;
+	justify-content: center!important;
+	align-items: center!important;
+}
+.stats-table>tbody>tr>td {
+	align-content: center!important;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	color: black;
+}
+.stats-table>tbody>tr>th {
+	padding: 0.5rem;
+	color: gray;
+    flex-grow: 1;
+	flex-basis: 0;
+}
+
+.active-tick::before {
+	font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f00c";
+}
+
+.hidden-at-start {
+	display: none;
+}
+.player-button {
+    width: 100px !important;
+}
+.take-seat-button {
+	padding: 0.3rem 0.5rem 0.3rem 0.4rem;
+}
+.dealer-button {
+    width: 120px !important;
+}
+
+.poker-table {
+	position: relative;
+	background-size: contain;
+	background-position: center;
+	background-image: url("/images/table-branded.svg"); /*SVG = 1080 x 590 */
+	background-repeat: no-repeat;
+	
+	height: calc( (80vw * 590) / 1080 ); 
+	max-width: calc( (70vh * 1080) / 590);
+	max-height: 65vh;
+	z-index: 1;
+}
+
+/* ----------- Community card display -------------- */
+.comm-card-area {
+	position: absolute;
+	width: 100%; /*Ensures the size continues to be dynamic */
+	max-width: 40%;
+    left: 30%;
+    top: 40%;
+}
+
+.comm-card-container {
+  	/*border: 1px solid darkgrey;
+    border-radius: 5px;*/
+	height: auto;
+	width: 100%;
+}
+
+.community-card {
+	padding: 0.2rem;
+    height: auto;
+    max-width: 100%;
+}
+/* ------------------------------------ */
+
+.pot-chip-stack {
+	width: 35px;
+	height: auto;
+}
+.chips1 {
+	display: none;
+	overflow: hidden;
+}
+.chips2 {
+	display: none;
+	filter: hue-rotate(90deg);
+	-webkit-filter: hue-rotate(90deg);
+}
+.chips3 {
+	display: none;
+	filter: hue-rotate(180deg);
+	-webkit-filter: hue-rotate(180deg);
+}
+.chips4 {
+	display: none;
+	filter: hue-rotate(270deg);
+	-webkit-filter: hue-rotate(270deg);
+}
+.pot-chip-area {
+	margin-top: 17%;
+	height: 12%;
+}
+.chip-column {
+	position: relative;
+	width: auto;
+	flex: inherit;
+	padding: .25rem !important;
+	/*max-width: 8.333%;*/
+}
+
+.hand-rank>tbody>tr {
+	text-align: center;
+}
+.hand-rank>tbody>tr>td {
+	font-weight: bold;
+}
+.hand-rank>tbody>tr>td>img {
+	padding: 2px;
+    width: 80px;
+    text-align: center;
+    height:auto;
+}
+.card-on-table::after {
+	background-color: #ffffff;
+}
+.card-on-table::before {
+	background-color: #ffffff;
+}
+.navbar-custom {
+  	border: 1px solid slategrey;
+    border-radius: 12px;
+    margin: 5px;
+    background-color: #292b2c;
+}
+
+.navbar-custom .
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,.8);
+}
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(255,255,255,.5);
+}
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #ffffff;
+}
+
+/* Action icons as buttons */
+.fa-copy:hover {
+    cursor: pointer;
+    font-weight: 900;
+}
+.fa-copy {
+    cursor: pointer;
+    color: #007bff!important;
+    margin-left: 10px;
+}

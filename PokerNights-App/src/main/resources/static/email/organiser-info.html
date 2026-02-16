@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<main class="bd-content ">
+		<div class="jumbotron jumbotron-fluid m-4 p-4" style="border-radius: 10px">
+			<div class="container">
+				<p class="lead">Hi {organisername}, you have organised a private poker game of {gametype} at <a href="https://www.pokerroomsnow.com">Poker Rooms Now</a>.</p>
+				<p>{hostname} will be hosting the game and the initial buy-in is {buyin} for this {moneytype} money {gameformat} game.</p>
+				<p>This is the <a href="{tablelink}">unique game link</a>. If you are also hosting the game, you will need
+				   to join the table with the same account which was used to schedule the game ({organiseremail}) in order to start the game-play off.
+				   The table is available 15 minutes before the game is scheduled to start, and cannot start before the host joins. The host will 
+				   have a couple of additional options to help run the game and <b>{hostwallet}</b> be controlling player wallet allocations as they join the table.</p>
+				<p>You have invited {numplayers} players to the game. You can invite more players by forwarding this email, but note that the maximum per 
+				   table is {maxplayers}. We suggest you only invite players that you know well and trust to be in your game.</p>
+				<p>You have added the following information to the invite:<br>{additionalinfo}</p>
+				<p>If you haven't played {gametype} before then you may find some of the resources
+				   on the main site useful to get <a href="https://www.pokerroomsnow.com/how-to-play">you prepared</a>.
+				   Thank you for organising your game with <a href="https://www.pokerroomsnow.com">Poker Rooms Now</a>!</p>
+			</div>
+		</div>
+		<footer class="blockquote-footer text-center"><cite title="PokerRoomsNow">The PokerRoomsNow team</cite>&nbsp;<img src="https://app.pokerroomsnow.com/images/logo.png" width="20" height="20" alt=""></footer>
+		<footer class="text-center">&copy; Langley Data Solutions Ltd 2021</footer>
+	</main>
+</body>
+</html>

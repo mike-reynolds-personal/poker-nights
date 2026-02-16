@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>Poker Rooms Now - How to play</title>
+ 	<meta name="keywords" content="Home, Poker, Private, No Rake, No Timer, Texas, holdem, free, host, how to play, poker rules, poker game play">
+ 	<meta name="description" content="How to play Texas Hold'em poker - A break down of terminology and rules">
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/webjars/font-awesome/5.13.0/css/all.css"/>
+	<link rel="stylesheet" href="/css/custom.css" />
+	
+	<link rel="icon" href="/images/favicon.ico"/>
+</head>
+
+<body>
+<h1 class="hidden-at-start">Poker Rooms Now | How to play</h1>
+<!-- Static navbar -->
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top justify-content-center">
+	<a class="navbar-brand m-0 mr-2">
+	   <img src="/images/logo.png" width="30" height="30" alt="site logo">
+	</a>
+    <a class="navbar-brand">Poker Rooms Now</a>
+	  <div class="collapse navbar-collapse">
+	    <ul class="navbar-nav mr-auto mt-1">
+
+	      <li class="nav-item">
+	        <a class="nav-link" href="/">Home</a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" href="/how-to-play">How to Play</a>
+	      </li>
+	      <!-- Tools drop-down -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Tools
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="/evaluator">Hand Evaluator</a>
+				<a class="dropdown-item" href="/sidepots">Side Pot Calculator</a>
+			</div>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/admin">Host Admin</a>
+	      </li>
+	      <!-- About drop-down -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          About
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="views/main/privacy.html">Privacy</a>
+				<a class="dropdown-item" href="views/main/cookies.html">Cookies</a>
+				<a class="dropdown-item" href="views/main/terms.html">Terms of Use</a>
+			</div>
+	      </li>
+	    </ul>
+  
+	  <!-- Login Controls -->
+	  <form class="form-group form-inline nav">
+	  	<button id="signin-button" class="btn btn-primary dealer-button mr-sm-2">Sign&nbsp;In</button>
+		<a id="createGame" href="/schedule-game?gameType=texas_holdem" role="button" class="btn btn-primary dealer-button mr-sm-2">Create&nbsp;Game</a>
+		<button id="logout-button" class="btn btn-primary dealer-button mr-sm-2 hidden-at-start" type="submit">Logout</button>
+	  </form>
+   </div>
+</nav><!-- End the navigation bar -->
+
+ <!-- Main content area -->
+<main class="bd-content " style="padding-top: 90px;">
+
+	<a name="getting-started"></a>
+	<div class="jumbotron jumbotron-fluid m-4 p-4" style="border-radius: 10px">
+		<div class="container">
+			<h2 class="display-5">Getting Started</h2>
+			<p class="lead">The basic game-play of Texas Hold'em</p>
+			<p>Texas Hold'em poker is simple to start playing, but can take years to master, which is probably why it is one of the
+			   most popular card games in the world.</p>
+			<p>The basic rules and game-play are pretty simple;</p>
+			  <ul>
+			  <li>Each player at the table is dealt two cards - hole cards. These are private cards that no-one should see until you need to prove if you've won.</li>
+			  <li>Through the game five 'community cards' are dealt face-up on the table.</li>
+			  <li>The aim is to make the best set of <em>five</em> cards from the five on the table <em>and</em> the two in your hand.</li>
+			  <li>The player with the best five cards wins the game and the pot! For a list of the hand rankings, please see <a href="#poker-hands">Hand Ranks</a> below.</li>
+			  </ul>
+			<p class="lead">A bit more detail...?</p>
+			<p>The skill (and the fun) in Texas Hold'em is all about the betting. There are four betting rounds which are linked to the community cards
+			   being dealt;</p>
+			<ul>
+			<li><b><em>Pre-flop:</em></b> Prior to any player being dealt their cards, blinds (an ante) most be provided by the two players to the left of the dealer - 
+			   this is the small blind and big blind respectively. The big blind is always double the small blind. Essentially, this is the cost of receiving
+			   your cards and stimulates 'the action'.<br>
+			   After the big blind is posted, all players are dealt their hole cards. For a player to stay within the round they must bet at least the same amount
+			   as the big blind (but they can raise the stake as well) The first person to choose what they bet is the player to the left of the big blind.</li>
+			<li><b><em>Flop:</em></b> Once the pre-flop bets are all the same (equalized), they're collected in to the game pot and the 'flop' is dealt.
+			    The Flop is the first three community cards dealt face-up in the center of the table, all at the same time. Once the flop is visible, there is a 
+			    round of betting, starting with the first player to the dealer's left. Again, the round is only complete when the bets on the table are
+			    all equal. This is generally the first stage where you may see one or more player's fold their hand, because it's the first time everyone can 
+			    really assess the probability of their hand coming out top.</li>
+			<li><b><em>Turn:</em></b> This is the penultimate community card to be dealt. We have another round of betting based on this card being shown.</li>
+			<li><b><em>River:</em></b> The final community card and the last round of betting takes place. When the bets have equalised, the last person to be 'called' must show 
+			    their cards to prove whether they've won or not. (More on <a href="#poker-terms">Poker Terms</a> below). Obviously if the person doing the 'calling' has actually 
+			    got a better hand, then they have to prove it by turning their cards over as well.<br>
+			    The player with the best hand wins the pot.</li>
+			<li>Sometimes, dependent on the game variant, it's not as simple as the winner receiving the total pot value. For a more in-depth look at the
+			    potential scenarios, take a look at <a href="/evaluator#win-evaluation">breaking a tie</a> or in the case of different bet values,
+			    our <a href="/sidepots">Side Pot Calculator</a>.</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- Terms -->
+	<a name="poker-terms"></a>
+	<div class="jumbotron jumbotron-fluid m-4 p-4" style="border-radius: 10px">
+		<div class="container">
+			<h2 class="display-5">Poker Terms</h2>
+			<p class="lead">A quick run-down of poker terminology</p>
+			<p>We've already had a run down of the terms, or names of, the card rounds above, so here's a quick check list of other popular terms;</p>
+			<ul>
+			<li><b><em>Check:</em></b> Quite simply, a zero-bet. You can only check if you are the first player to bet, or if all preceding players have checked.</li>
+			<li><b><em>Call:</em></b> When betting, a 'call' is to match the preceding player's bet.</li>
+			<li><b><em>Raise:</em></b> To increase the value of the bet above that of the preceding player. Bets after a raise must match or exceed the raise value.</li>
+			<li><b><em>Fold or Muck:</em></b> Is to forfeit your hand without showing your cards.</li>
+			<li><b><em>Reveal:</em></b> To show your hole cards. Note that at PokerRoomsNow if you Reveal before the game winner is decided then this is the same
+			   as Fold, but showing your cards in the process (just so you scare your friends).</li>
+			<li><b><em>Stack:</em></b> The amount of money you have available at the table to bet with.</li>
+			<li><b><em>Buy-in:</em></b> This is the initial stake you pay to sit at the table. The money is a part of your Stack to bet with, but is the minimum you
+			    can turn up with.</li>
+			<li><b><em>Cash-out:</em></b> Collect all your money on the table and leave.</li>
+			<li><b><em>Wallet:</em></b> At PokerRoomsNow we have a 'Game Wallet' - this is the amount of money you can draw down from to fund your Buy-in and any re-buys
+			    required during a game. Currently there is no facility to increase your wallet once it is exhausted.</li>
+			<li><b><em>Rake:</em></b> This is a fee paid to the dealer/ casino based on the pot size in each round of a game. PokerRoomsNow does not have a rake fee, so 
+			    you always know how much a game is going to cost before playing (Yay!)</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- Explanation -->
+	<a name="poker-hands"></a>
+	<div class="jumbotron jumbotron-fluid m-4 p-4" style="border-radius: 10px">
+		<div class="container">
+			<h2 class="display-5">Poker Hands</h2>
+			<p class="lead">So what constitutes a good or a bad hand?</p>
+			<p>In simple terms, the winning hand is determined by a set of 10 ranks, defined below.
+			   Determining the winning hand when two or more players have the same rank can get a 
+			   bit more complicated. For a full description please take a look at our 
+			   <a href="/evaluator">Hand Evaluator</a>.</p>
+          	<table class="hand-rank">
+				<tbody>
+				<tr><td class="pt-3" colspan="5">Royal Flush</td></tr>
+				<tr>
+					<td><img class="hand-rank-img" src="/images/TH.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/JH.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/QH.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/KH.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/AH.svg"/></td>
+				</tr>
+				
+				<tr><td class="pt-3" colspan="5">Straight Flush</td></tr>
+				<tr>
+					<td><img class="hand-rank-img" src="/images/8C.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/9C.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/TC.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/JC.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/QC.svg"/></td>
+				</tr>
+				
+				<tr><td class="pt-3" colspan="5">Four of a Kind</td></tr>
+				<tr>
+					<td><img class="hand-rank-img" src="/images/8D.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/8S.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/8H.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/8C.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/2C.svg"/></td>
+				</tr>
+				
+				<tr><td class="pt-3" colspan="5">Full House</td></tr>
+				<tr>
+					<td><img class="hand-rank-img" src="/images/8D.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/8S.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/8H.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/JC.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/JS.svg"/></td>
+				</tr>
+
+				<tr><td class="pt-3" colspan="5">Flush</td></tr>
+				<tr>
+					<td><img class="hand-rank-img" src="/images/2D.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/5D.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/7D.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/9D.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/JD.svg"/></td>
+				</tr>
+				
+				<tr><td class="pt-3" colspan="5">Straight</td></tr>
+				<tr>
+					<td><img class="hand-rank-img" src="/images/2C.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/3C.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/4H.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/5S.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/6D.svg"/></td>
+				</tr>
+				
+				<tr><td class="pt-3" colspan="5">Three of a Kind</td></tr>
+				<tr>
+					<td><img class="hand-rank-img" src="/images/2C.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/5H.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/5S.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/5D.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/AD.svg"/></td>
+				</tr>
+				
+				<tr><td class="pt-3" colspan="5">Two Pair</td></tr>
+				<tr>
+					<td><img class="hand-rank-img" src="/images/2C.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/5H.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/5S.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/JD.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/JC.svg"/></td>
+				</tr>
+				
+				<tr><td class="pt-3" colspan="5">Pair</td></tr>
+				<tr>
+					<td><img class="hand-rank-img" src="/images/2C.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/5H.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/5S.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/8D.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/TS.svg"/></td>
+				</tr>
+				
+				<tr><td class="pt-3" colspan="5">High Card</td></tr>
+				<tr>
+					<td><img class="hand-rank-img" src="/images/2C.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/5H.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/8S.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/JD.svg"/></td>
+					<td><img class="hand-rank-img" src="/images/AS.svg"/></td>
+				</tr>
+				</tbody>
+          	</table>
+		</div>
+	</div>
+</main>
+
+    <!-- ================================================= -->
+	<!-- Placed at the end of the document so the pages load faster -->
+    <script src="/webjars/popper.js/umd/popper.min.js"></script>
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	
+	<script src="/js/session.js"></script>
+</body>
+</html>

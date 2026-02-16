@@ -1,0 +1,33 @@
+.tooltip-inner {
+background-color: #212529;
+}
+.tooltip.bs-tooltip-right .arrow:before {
+    border-right-color: #212529 !important;
+}
+.tooltip.bs-tooltip-left .arrow:before {
+    border-left-color: #212529 !important;
+}
+.tooltip.bs-tooltip-bottom .arrow:before {
+    border-bottom-color: #212529 !important;
+}
+.tooltip.bs-tooltip-top .arrow:before {
+    border-top-color: #212529 !important;
+}
+.tooltip.show p {
+  text-align:left;
+  margin: 0px;
+}
+.info-tip:before {
+	content: "\f05a";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+	color: #0062ce!important;
+    margin-left: .5rem!important;
+    margin-right: .5rem!important;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}

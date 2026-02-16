@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+
+<body>
+<div class="jumbotron jumbotron-fluid m-4" style="border-radius:10px">
+  <div class="container">
+    <h2 class="display-5">Too keen</h2>
+    <p class="lead">Sorry, your game table is only available from 15 minutes before the scheduled start time.</p>
+	  <p class="lead">
+	    <a href="../index.html" role="button">Home page</a>
+	  </p>
+	  <p class="lead">
+	    <a id="retry" class="btn btn-primary btn-lg text-white" role="button">Retry</a>
+	  </p>
+  </div>
+
+</div>
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+<script>
+$("#retry").click(function() {
+	location.reload();
+});
+</script>
+<script src="/js/session.js"></script>
+</html>

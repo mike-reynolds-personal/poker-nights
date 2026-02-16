@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>Poker Rooms Now</title>
+ 	<meta name="description" content="Free private Texas Hold'em poker games with friends and colleagues">
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/webjars/font-awesome/5.13.0/css/all.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+	<link rel="stylesheet" href="/css/custom.css" />
+	<link rel="stylesheet" href="/css/info-tooltips.css" />
+	
+	<link rel="icon" href="/images/favicon.ico"/>
+</head>
+<body class="schedule-game">
+<div class="modal hide fade" id="createGameForm" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Schedule Game</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			
+			<div class="modal-body">
+				<!-- The main game options -->
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-2">
+							<label class="col-form-label font-weight-bold">Game&nbsp;Setup:</label>
+						</div>
+						<div class="col-10">
+							<form class="schedule-form-group form-inline p-1">
+								<div class="col-md-4 text-center">
+									<!-- Game type -->
+									<div class="dropdown">
+										<button class="btn btn-outline-primary dropdown-toggle"
+											type="button"
+											id="gameType" data-toggle="dropdown"
+											disabled
+											aria-haspopup="true" aria-expanded="false">Texas Hold'em</button>
+											
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											<a class="dropdown-item gameTypeOpt" href="#">Texas Hold'em</a>
+											<a class="dropdown-item gameTypeOpt" href="#">Omaha</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="dropdown">
+										<button class="btn btn-outline-primary dropdown-toggle" type="button"
+											id="gameFormat" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">Cash</button>
+											
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											<a class="dropdown-item gameFormatOpt" href="#">Tournament</a>
+											<a class="dropdown-item gameFormatOpt" href="#">Cash</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="dropdown">
+										<button class="btn btn-outline-primary dropdown-toggle" type="button"
+											id="moneyType" data-toggle="dropdown"
+											disabled
+											aria-haspopup="true" aria-expanded="false">Virtual</button>
+											
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											<a class="dropdown-item moneyTypeOpt" href="#">Virtual</a>
+											<a class="dropdown-item moneyTypeOpt" href="#">Real</a>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div><!-- end of game options row -->
+					<!-- This form really needs re-organising into two columns -->
+					<form>
+						<!-- Organising the game -->
+						<div class="schedule-form-group">
+							<div class="form-row">
+								<div class="col-2">
+									<label for="orgName" class="col-form-label mr-3" title="You" disabled>Organiser:</label>
+								</div>
+								<div class="col-4">
+									<input id="orgName" type="text" class="form-control" placeholder="Organiser" required disabled>
+								</div>
+								<div class="col">
+									<input id="orgEmail" type="email" class="form-control" placeholder="Your email" required disabled>
+								</div>
+							</div>
+						</div>
+						<!-- Host details -->
+						<div class="schedule-form-group">
+							<div class="form-row">
+								<div class="col-2">
+									<label for="hostName" class="col-form-label" title="Who will start the game">Host:</label>
+									<i	class="info-tip"	
+										data-toggle="tooltip" 
+										data-placement="left"
+										data-html="true"
+										title="<p>Who is going to control the game during play?<br><em>The Host's email must match their account email.</em></p>"></i>
+								</div>
+								<div class="col-4">
+									<input id="hostName" type="text" class="form-control" placeholder="Host name" required>
+								</div>
+								<div class="col">
+									<input id="hostEmail" type="email" class="form-control" placeholder="Host email" required>
+								</div>
+							</div>
+						</div>
+
+						<!-- Start time / schedule for -->
+						<div class="schedule-form-group">
+							<div class="form-row">
+								<div class="col-2">
+									<label for="scheduleFor" class="col-form-label mr-3">Schedule for:</label>
+								</div>
+								<!-- date-time picker -->
+								<div class="col-4">
+									<div class="input-group date" id="gameSchedulePicker" data-target-input="nearest">
+										<input id="scheduleFor" type="text" class="form-control datetimepicker-input" data-target="#gameSchedulePicker" required/>
+										<div class="input-group-append" data-target="#gameSchedulePicker" data-toggle="datetimepicker">
+											<div class="input-group-text"><i class="fas fa-calendar"></i></div>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<button id="schedNow" class="btn btn-outline-primary" type="button">Now!</button>
+									<i	class="info-tip"	
+										data-toggle="tooltip" 
+										data-placement="right"
+										data-html="true"
+										title="<p>Choose a suitable time for most players to start.<br><em>Players can join later than this time.</em></p>"></i>
+								</div>
+							</div>
+						</div>
+						
+						<hr class="mt-2" style="width: 80%;"/>
+						
+						<div class="form-group row mt-3 mb-1">
+							
+							<!-- Common Options -->
+							<div class="col-sm-6" style="min-height:230px;">
+								<!-- buy-in -->
+								<div class="schedule-form-group form-inline">
+									<label class="schedule-game-label" for="buyinAmount" id="buyinLab">Buy-in:</label>
+									<input class="form-control" id="buyinAmount" value="10.00" step="1" type="number" style="max-width: 90px;">
+									<i	class="info-tip"	
+										data-toggle="tooltip" 
+										data-placement="right"
+										data-html="true"
+										title="<p>This is the value of chips a player 'buys' and plays with.<br><em>A player can rebuy during the game up to the amount in their game wallet.</em></p>"></i>
+								</div>
+								<!-- Blinds -->
+								<div class="schedule-form-group form-inline">
+									<label class="schedule-game-label">Small Blind:</label>
+									<input class="form-control" id="smallBlind" type="number" step="0.1" value="0.10" style="max-width: 90px;">
+									<i	class="info-tip"	
+										data-toggle="tooltip" 
+										data-placement="right"
+										data-html="true"
+										title="<p>The small blind in GBP.<br>The big blind is always double this amount.<br><em>The Host can increase blinds during the game.</em></p>"></i>
+								</div>
+								<!-- Pot Type -->
+								<div class="schedule-form-group form-inline">
+									<label class="schedule-game-label" for="potTypeOpt">Pot Type:</label>
+									<select class="form-control" id="potTypeOpt" style="min-width: 140px">
+										<option>No Limit</option>
+										<option>Limit</option>
+										<option>Pot Limit</option>
+									</select>
+									<i	class="info-tip"
+										data-toggle="tooltip" 
+										data-placement="right"
+										data-html="true"
+										title="<p>Choose the game round betting format.<br><em>Only No Limit enables 'All-in' play.</em></p>"></i>
+								</div>
+								<!-- Shuffle -->
+								<div class="schedule-form-group form-inline">
+									<label class="schedule-game-label" for="shuffleOpt">Shuffle deck:</label>
+									<select class="form-control col-sm-2" id="shuffleOpt" style="min-width: 100px;">
+										<option title="The deck is shuffled at the start of every round">Always</option>
+										<option title="The deck is never shuffled">Never</option>
+									</select>
+								</div>
+								<!-- enforce min -->
+								<div class="schedule-form-group form-check">
+									<input class="form-check-input" checked type="checkbox" id="enforceRaise">
+									<label class="form-check-label" for="enforceRaise">
+											Enforce minimum raise</label>
+									<i	class="info-tip"	
+										data-toggle="tooltip" 
+										data-placement="right"
+										data-html="true"
+										title="<p>Should standard betting rules apply?<br><em>If checked, the minimum raise is the required bet, plus the previous raise value.</em></p>"></i>
+								</div>
+								<!-- Action timeout -->
+								<div class="schedule-form-group form-inline">
+									<div class="schedule-form-group form-check">
+										<input class="form-check-input" type="checkbox" id="useActionTimeout">
+										<label class="form-check-label pr-1" for="useActionTimeout">Take action timeout?</label>
+										<input class="form-control" id="actionTimeout" type="number" step="10" value="300" style="max-width: 90px;" disabled>&nbsp;s
+										<i	class="info-tip"	
+											data-toggle="tooltip" 
+											data-placement="right"
+											data-html="true"
+											title="<p>Do you want to enforce a maximum time for players to perform an action?<br><em>If checked, then players have a set number of seconds in which to complete actions before being folded.</em></p>"></i>
+									</div>
+								</div>
+								
+							</div>
+							
+							<!-- Format type Options -->
+							<div class="col-sm-6">
+								<div class="collapse show" id="cashGameOpts">
+									<!-- Rebuy type -->
+									<div class="schedule-form-group form-inline">
+										<label class="schedule-game-label" for="rebuyOpt">Rebuy value:</label>
+										<select class="form-control" id="rebuyOpt">
+											<option>Initial Buy In</option>
+											<option>Largest Stack</option>
+										</select>
+										<i	class="info-tip"	
+											data-toggle="tooltip" 
+											data-placement="left"
+											data-html="true"
+											title="<p>What value should players rebuy at when they run out of chips?<br><em>'Largest Stack' will match the player's rebuy to the largest stack on the table at the time (if funds are available).</em></p>"></i>
+									</div>
+									<!-- Host wallets -->
+									<div class="schedule-form-group form-check">
+										<input class="form-check-input" checked="true" type="checkbox" id="hostWalletOpt">
+										<label class="form-check-label" for="hostWalletOpt">
+												Host controls player wallets</label>
+										<i	class="info-tip"	
+											data-toggle="tooltip" 
+											data-placement="right"
+											data-html="true"
+											title="<p>If checked, the Host has to allocate funds to each player as they join the table.<br><em>Useful if you want to play for real money on a virtual money game.</em></p>"></i>
+									</div>
+									<!-- Rebuy in round -->
+									<div class="schedule-form-group form-check">
+										<input class="form-check-input" type="checkbox" id="rebuyInRoundOpt">
+										<label class="form-check-label" for="rebuyInRoundOpt">
+												Allow re-buy in round</label>
+										<i	class="info-tip"	
+											data-toggle="tooltip" 
+											data-placement="right"
+											data-html="true"
+											title="<p>If checked, a player can re-buy as soon as they run out of chips, even part way through a round.</p>"></i>
+									</div>
+								</div>
+								<!-- ------------------- -->
+								<div class="collapse" id="tourGameOpts">
+									<!-- Initial Stack -->
+									<div class="schedule-form-group form-inline">
+										<label class="schedule-game-label" for="startingChips">Start chips:</label>
+										<input class="form-control" id="startingChips" value="100" min="100" step="50" type="number" style="max-width: 90px;">
+										<i	class="info-tip"	
+											data-toggle="tooltip" 
+											data-placement="right"
+											data-html="true"
+											title="<p>The chip stack to assign to all players</p>"></i>
+									</div>
+									<!-- Winners split -->
+									<div class="schedule-form-group form-inline">
+										<label class="schedule-game-label" for="winningSplit">Winner split:</label>
+										<input class="form-control" id="winningSplit" value="50,30,20" style="max-width: 90px;">
+										<i	class="info-tip"	
+											data-toggle="tooltip" 
+											data-placement="right"
+											data-html="true"
+											title="<p>Define what the winning players get as a percentage.<br><em>The total must equal 100%. The number of percentages supplied defines the number of winners</em></p>"></i>
+									</div>
+									<!-- Blind increase -->
+									<div class="schedule-form-group form-inline">
+										<label class="schedule-game-label" for="blindsIncAt">Blinds every:</label>
+										<input class="form-control" id="blindsIncAt" value="15" step="1" min="1" max="60" type="number" style="max-width: 90px;">
+										<i	class="info-tip"	
+											data-toggle="tooltip" 
+											data-placement="left"
+											data-html="true"
+											title="<p>The time interval between blinds increasing (in minutes)</p>"></i>
+									</div>
+									<!-- Join in round -->
+									<div class="schedule-form-group form-inline">
+										<label class="schedule-game-label" for="joinUpTo">Max join round:</label>
+										<select class="form-control" id="joinUpTo">
+											<option>0</option><option selected>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+										</select>
+										<i	class="info-tip"	
+											data-toggle="tooltip" 
+											data-placement="left"
+											data-html="true"
+											title="<p>The last game round that players are allowed to join the table.<br><em>0=before the game starts</em></p>"></i>
+									</div>
+									<!-- # of tables -->
+									<div class="schedule-form-group form-inline">
+										<label class="schedule-game-label" for="numTables" disabled>No. Tables:</label>
+										<select class="form-control" id="numTables" disabled>
+											<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+										</select>
+										<i	class="info-tip"	
+											data-toggle="tooltip" 
+											data-placement="left"
+											data-html="true"
+											title="<p>The amount of tournament tables to play across (max 9 per table)</p>"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Show invite options -->
+						<button id="inviteOptCollapse" class="btn btn-link ml-0 pl-0 pb-2"
+							data-toggle="collapse"
+							data-target="#inviteOpts"
+							aria-expanded="false"
+							aria-controls="inviteOpts">
+								<i class="far fa-plus-square mr-1"></i>
+						          Invite Options
+						          
+						</button>
+						<!-- Invite options -->
+						<div class="collapse" id="inviteOpts" data-parent="#inviteOptCollapse">						
+							<!-- Who's comming? -->
+							<div class="schedule-form-group form-inline">
+								<input id="addInviteEmal" type="email" class="form-control col-sm-4 mr-1" placeholder="Email">
+								<button id="addInvite" class="btn btn-outline-success mr-2" type="button">Invite</button>
+								<button id="clearInvite" class="btn btn-outline-danger mr-2 ml-2" type="button">Clear list</button>
+							</div>
+							<div class="schedule-form-group form-inline">
+								<textarea class="form-control col-md-5" 
+									rows="5" 
+									id="invitesList"
+									style="font-size:0.8rem;"
+									readonly="true"></textarea>
+								<label id="numInvited" class="ml-1">0</label>
+								<textarea class="form-control col-md-5 ml-auto" 
+									rows="5" 
+									id="additionalInfo"
+									style="font-size:0.8rem;" 
+									maxlength="500" 
+									placeholder="Additional notes to include in invite (e.g Conference call details)."></textarea>
+							</div>
+
+					</div>
+				  </form><!-- Close main form -->
+				  <label class="text-sm text-danger p-0 font-italic" id="errorLabel"></label>
+				  
+				 	<!-- Footer -->
+					<div class="modal-footer p-0 pt-1">
+						<div class="form-group form-check">
+							<input class="form-check-input" type="checkbox" value="agree" name="terms" id="termsAndCons" required>
+							<label class="form-check-label" for="termsAndCons">I agree to the PokerRoomsNow.com <a href="views/main/terms.html">Terms of Use</a></label>
+						</div>
+						<div class="ml-auto">
+							<button id="submitCreateGame" type="submit" class="btn btn-success dealer-button" disabled>Create</button>
+						</div>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+	<script src="/js/lib/tempusdominus-bootstrap-4.min.js"></script>
+	
+	<script src="/js/session.js"></script>
+	<script src="/js/lib/en-gb.js"></script>
+	<script src="/js/schedule-game.js"></script>
+
+</html>

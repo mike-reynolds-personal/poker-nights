@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>Poker Rooms Now</title>
+ 	<meta name="description" content="Free private Texas Hold'em poker games with friends and colleagues">
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/webjars/font-awesome/5.13.0/css/all.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+	<link rel="stylesheet" href="/css/custom.css" />
+</head>
+
+<body>
+<h1 class="hidden-at-start">Poker Rooms Now | Home</h1>
+<!-- Static navbar -->
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top justify-content-center">
+	<a class="navbar-brand m-0 mr-2">
+	   <img src="/images/logo.png" width="30" height="30" alt="">
+	</a>
+    <a class="navbar-brand">Poker Rooms Now</a>
+	  <div class="collapse navbar-collapse">
+	    <ul class="navbar-nav mr-auto mt-1">
+
+	      <li class="nav-item active">
+	        <a class="nav-link" href="/">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/how-to-play">How to Play</a>
+	      </li>
+	      <!-- Tools drop-down -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Tools
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="/evaluator">Hand Evaluator</a>
+				<a class="dropdown-item" href="/sidepots">Side Pot Calculator</a>
+			</div>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/admin">Host Admin</a>
+	      </li>
+	      <!-- About drop-down -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          About
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="views/main/privacy.html">Privacy</a>
+				<a class="dropdown-item" href="views/main/cookies.html">Cookies</a>
+				<a class="dropdown-item" href="views/main/terms.html">Terms of Use</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="#" id="accInfo">Your Account</a>
+			</div>
+	      </li>
+	    </ul>
+  
+	  <!-- Login Controls -->
+	  <form class="form-group form-inline nav">
+	  	<!-- <button id="signin-button" class="btn btn-primary dealer-button mr-sm-2">Sign&nbsp;In</button>-->
+		<a id="createGame" href="/schedule-game?gameType=texas_holdem" role="button" class="btn btn-primary dealer-button mr-sm-2">Create&nbsp;Game</a>
+		<button id="logout-button" class="btn btn-primary dealer-button mr-sm-2 hidden-at-start" type="submit">Logout</button>
+	  </form>
+   </div>
+</nav><!-- End the navigation bar -->
+
+ <!-- Main content area -->
+<main class="bd-content " style="padding-top: 90px;">
+	<div class="col d-flex flex-fill justify-content-center">
+		<h2 class="display-6 text-primary p-1" id="greeting"></h2>
+	</div>
+	
+	<div class="col d-flex flex-fill justify-content-center">
+		<a id="newGameDetail" class="p-1  font-weight-bold"></a>
+	</div>
+
+	
+	<div class="jumbotron jumbotron-fluid m-4 p-4" style="border-radius: 10px">
+		<div class="container">
+			<h2 class="display-5">Poker Rooms Now</h2>
+			<p class="lead">Private Texas Hold'em poker rooms for free!</p>
+			<p>Poker Rooms Now is a new Texas Hold'em poker site which was created with a few simple goals in mind;
+			<ul>
+			<li><em>Easy hosting and quick set-up.</em> Enable anyone to host and play a private game of Texas Hold'em with friends, with the minimal amount of set-up required and no need to download or install any additional software.</li>
+			<li><em>Only focus on private games.</em> We are not a casino or gambling web site - we provide our Software as a Service for you to play the online equivalent of a private home game.</li>
+			<li><em>Transparent pricing.</em> There are <b>No rake fees!</b> All games have a fixed hosting fee for up to 12 hours play (post-launch).</li>
+			<li><em>Keep it social.</em> A good home game is as much about the social as it is about the poker, therefore there are <b>no timers to force you in to action or distract you from a conversation.</b>.
+				As we don't charge a rake-fee, we don't mind how many rounds you play... 5 or 500, leaving more time for banter.</li>
+			<li><em>Keep it fun.</em> There are no big-money pay-outs and no professional players in your game (unless you invite them), so you can be
+			    assured that no one is there just to earn money from you.</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="jumbotron jumbotron-fluid m-4 p-4" style="border-radius: 10px">
+		<div class="container">
+			<h2 class="display-5">Start Playing</h2>
+			<p class="lead">How to host your own Game</p>
+				<p>Do you want to play Texas Hold'em with friends for free on a private table?</p>
+				<p>Our site is currently 'pre-launch', therefore in exchange for constructive feedback all games are free to create and play.</p>
+				<p>It's easy to play, and easy to start playing:
+				<ul>
+				<li>Sign-in or create an account using the 'Sign-In' button in the top right-hand corner.</li>
+				<li>Once signed-in, you can Create a Game to schedule a private game. Games can be available immediately, but are archived 24 hours after the scheduled start time. A game is available 15 minutes prior to the scheduled time.</li>
+				<li>Choose your options, such as initial blinds, game variant and buy-in amount, then click 'Create'.</li>
+				<li>You're provided a unique game link which you can save and share with up to 8 friends (plus host). If you provide participant emails, they're sent and email with a calendar appointment which contains all of the relevant details.</li>
+				<li>If you schedule a game less than 15 minutes in the future, feel free to click the game link straight away to check out the table.</li>
+				<li>Around the scheduled start time, use the link to go to the table and choose a seat. Enter a name along with the amount you want to place in your game wallet.
+					We suggest you enter roughly the same amount you would usually take to a home game.</li>
+				<li>Once more than the minimum required players (two for Texas Hold'em) are seated, the host can start the game. Note that only the player with an email address matching the Host Email entered in the Create Game form can start the first game.</li>
+				<li>Instructions on using the table, along with the hand ranks, are available from the in-game menu. The host has additional options to help them control the game, but they no visibility
+				   of any cards apart from their own, so they play along with everyone else.</li> 
+				</ul>
+		</div>
+	</div>
+	<div class="jumbotron jumbotron-fluid m-4 p-4" style="border-radius: 10px">
+		<div class="container">
+			<h2 class="display-5">Status</h2>
+			<p class="lead">Current development and release status</p>
+			<p>Poker Rooms Now is in a 'pre-launch' status. This means that the software is free to use
+			   in it's current form and whilst we endeavour to ensure it works as expected, it is offered without warranty or acceptance of any liability.</p>
+			 <p>If you encounter any issues then please email <a href="mailto:support@pokerroomsnow.com">Support</a> with a description of the issue and how it occurred,
+			    and we'll work hard to address it.</p>
+			 <p>Along with getting all of the basics in place, we have some exciting developments in the pipeline, including the ability to transfer winnings between players and run tournament games.
+			    If you have any suggestions then please <a href="mailto:support@pokerroomsnow.com">email us</a></p>
+			 <p>Known issues:</p>
+			<ul>
+				<li>Game wallet is not saved between games</li>
+				<li>Games running longer than four hours can disconnect players due to session timeouts</li>
+				<li>The account activation email can redirect you to the wrong page</li>
+				<li>British pounds (GBP) is the only supported currency</li>
+			</ul>
+			A full list of the updates/ improvements is available in the <em>Instructions</em> dialog available from the game table.
+		</div>
+	</div>
+</main>
+<div id="accInfoHolder"></div>
+    <!-- ================================================= -->
+	<!-- Placed at the end of the document so the pages load faster -->
+    <script src="/webjars/popper.js/umd/popper.min.js"></script>
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+	<script src="/js/session.js"></script>
+	<script src="/js/account-info.js"></script>
+	
+</body>
+<script>
+$(document).ready( function () {
+	const urlParams = new URLSearchParams(window.location.search);
+	const gameUrl = urlParams.get('newGame');
+	if (gameUrl) {
+		$("#newGameDetail").text('Go to game table (Right-click to save link)');
+		$("#newGameDetail").attr("href", gameUrl);
+	}
+	$("#accInfoHolder").load('views/main/account-info.html');
+	$("#accInfo").click(function() {
+		showAccInfo(false);
+	});
+});
+</script>
+</html>

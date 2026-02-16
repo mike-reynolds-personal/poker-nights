@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>Poker Rooms Now</title>
+ 	<meta name="description" content="Free private Texas Hold'em poker games with friends and colleagues">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/brands.min.css"/>
+	<link rel="icon" href="/images/favicon.ico"/>
+	<link rel="stylesheet" href="../gateway-content/css/login.css">
+</head>
+
+<body>
+<div id="modalUpgrade" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="align-self: center;">
+        <h5 class="modal-title">Upgrade Account</h5>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row justify-content-center"><label id="accountId">{accountId}</label></div>
+          <div class="row justify-content-center"><label>This facility is coming soon!</label></div>
+
+		  <form>
+			  <div class="form-group">
+					<div class="form-check m-2">
+						<input class="form-check-input" type="radio" name="optradio" id="tier1Opt" value="TIER_1" checked>
+						<label class="form-check-label" for="tier1Opt"><b>Starter</b></label>
+						<br><label class="form-check-label" for="tier1Opt">Organise one free virtual money game per month, that you host and play in.</label>
+						<br><label id="tier1Price" class="form-check-label font-italic" for="tier1Opt">Free</label>
+					</div>
+					<div class="form-check m-2">
+						<input class="form-check-input" type="radio" name="optradio" id="tier2Opt" value="TIER_2">
+						<label class="form-check-label" for="tier2Opt"><b>Regular</b></label>
+						<br><label class="form-check-label" for="tier2Opt">Organise up to 5 virtual money games per month, that you host and play in.</label>
+						<br><label id="tier2Price" class="form-check-label font-italic" for="tier2Opt">&pound;4.99 p/month</label>
+					</div>
+					<div class="form-check m-2">
+						<input class="form-check-input" type="radio" name="optradio" id="tier3Opt" value="TIER_3"> 
+						<label class="form-check-label" for="tier3Opt"><b>Club</b></label>
+						<br><label class="form-check-label" for="tier3Opt">Organise 15 virtual money games per month, with any nominated host.</label>
+						<br><label id="tier3Price" class="form-check-label font-italic" for="tier3Opt">&pound;5.99 p/month</label>
+					</div>
+					<div class="form-check m-2">
+						<input class="form-check-input" type="radio" name="optradio" id="tier4Opt" value="TIER_4"> 
+						<label class="form-check-label" for="tier4Opt"><b>Pro</b></label>
+						<br><label class="form-check-label" for="tier4Opt">Organise up to 30 real and virtual money games per month, with any nominated host.</label>
+						<br><label id="tier4Price" class="form-check-label font-italic" for="tier4Opt">&pound;7.99 p/month</label>
+					</div>
+				</div>
+			</form>
+
+			<div class="row justify-content-center">
+				<button id="submitUpgradeAccount" type="submit" class="btn btn-success dealer-button" disabled>Upgrade me!</button>
+			</div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- ================================================= -->
+	<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#modalUpgrade').modal('show');
+    });
+	$('#modalUpgrade').on('hidden.bs.modal', function (e) {
+		  location.replace("{redirectOnClose}");
+		});
+</script>
+</body>
+</html>

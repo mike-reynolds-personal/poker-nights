@@ -1,0 +1,110 @@
+<div id="modalTakeSeat" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:280px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="takeSeatLabel">Join Game</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="justify-content-center">
+          	<form>
+				<div class="form-group">
+					<input class="form-control playerHandle" id="playerHandle" placeholder="Display name" required>
+				</div>
+				<div id="walletEntryGroup" class="form-group">
+					<label class="form-label text-muted" for="playerWallet"><small>The total amount you are comfortable loosing...</small></label>
+					<input class="form-control playerWallet" id="playerWallet" type="number" placeholder="Game wallet" required>
+				</div>
+				<div class="form-group form-check text-center">
+					<input class="form-check-input" type="checkbox" id="termsAndCons" required style="margin-top: .45rem!important;">
+					<label class="form-check-label text-small" for="termsAndCons">I agree to the <a href="../views/main/terms.html">Terms of Use</a></label>
+				</div>
+				<div class="form-group text-center">
+					<button id="getSeatedBtn" class="btn btn-success" disabled>Get me seated!</button>
+				</div>
+          	</form>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(function() {
+	// Stop the form closing just by pressing the submit button
+    $("form").on('submit', function (e) {
+        e.preventDefault();
+    });
+	
+	// Configure the wallet control
+    if (gameSettings.format === 'TOURNAMENT' || (gameSettings.hostControlledWallet && gameSettings.moneyType == 'VIRTUAL')) {
+    	$("#walletEntryGroup").hide();
+    	$("#playerWallet").val(gameSettings.buyInAmount);
+    } else {
+        // Defaults for sitting at table
+    	$("#playerWallet").attr("value", "50")
+    					  .attr("step", gameSettings.buyInAmount)
+    					  .attr("min", gameSettings.buyInAmount)
+    					  .attr("max", "1000000");
+    	$("#playerWallet").on('input', function() { doButton(); });
+    }
+    
+	$("#playerHandle").on('input', function() { doButton(); });
+	$("#termsAndCons").click(function() { doButton(); });
+	
+	// Take a seat at the table action button
+	$("#getSeatedBtn").click(function(ctrl) {
+		var seatId = $(this).data('val');
+		
+		if (!seatId) {
+			seatId = -1;
+		}
+
+		if (!canGetSeated()) {
+			return true;
+		}
+
+		var pWallet = 0;
+		if (gameSettings.format === 'TOURNAMENT') {
+			pWallet =  gameSettings.buyInAmount;
+		} else {
+			pWallet =  parseFloat($("#playerWallet").val());
+		}
+		var handle = $("#playerHandle").val();
+		
+		// Add the player
+		addMeToTable(seatId, handle, pWallet );
+		
+		$("#modalTakeSeat").modal('hide');
+		return false; // ensure page doesn't refresh
+	});
+	
+});
+
+function doButton() {
+	$("#getSeatedBtn").prop('disabled', !canGetSeated());
+}
+
+function canGetSeated() {
+	var termsDone = $("#termsAndCons").is(":checked");
+	var pWallet = $("#playerWallet");
+	var handle = $("#playerHandle").val();
+	if (handle.length==0 || handle.includes(' ')) {
+		return false;
+	}
+	
+	var wallet = parseFloat(pWallet.val() == '' ? 0 : pWallet.val());
+	var max = parseInt(pWallet.attr("max"));
+	var walletTooSmall =  wallet < gameSettings.buyInAmount && gameSettings.hostControlledWallet == false;
+	// validate
+	if ( (wallet % gameSettings.buyInAmount) > 0 || walletTooSmall || wallet > max || handle.length < 2 || !termsDone) {
+		return false;
+	}
+	return true;
+}
+
+</script>

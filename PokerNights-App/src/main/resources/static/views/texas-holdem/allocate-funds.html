@@ -1,0 +1,74 @@
+<div id="modalAllocateFunds" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:280px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="takeSeatLabel">Allocate Funds</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid pr-0">
+          <div class="row justify-content-center">
+          	<table class="stats-table flex-fill col-sm-11">
+				<tbody id="allocFundsArea"></tbody>
+          	</table>
+        </div>
+        </div>
+      </div>
+      <div class="modal-footer mr-0">
+         <button id="allocateFundsButton" type="submit" class="btn btn-success">Transfer</button>
+      </div>
+   </div>
+ </div>
+</div>
+<script>
+
+// Set-up the open form menu option
+$(function() {
+    $("#assignWalletsMenu").click(function() {
+    	var table = $("#allocFundsArea");
+    	$("#allocFundsArea tr").remove();
+    	
+    	var wCon = '<input class="form-control ml-auto" type="number" placeholder="Wallet" style="max-width:90px;" required ' +
+    				  'step="' + gameSettings.buyInAmount + '" ' +
+    				  'min="' + gameSettings.buyInAmount + '" ' +
+    				  'value="' + (gameSettings.buyInAmount * 3) + '" ' +
+    				  'max="10000"' +
+    				  'id="pWallet-{pID}">'; 
+    	var pRow = '<tr class="pr-0 pt-1"><td style="text-align: left;padding-left:0px;" id="{pID}">{pHandle}</td><td>' + wCon + '</td></tr>';
+    	
+    	$.each(getWOFA(), function(idx, player) {
+    		table.append(pRow.replace(/{pID}/g, player.playerId).replace('{pHandle}', player.playerHandle));
+    	});
+    	$("#modalAllocateFunds").modal('show');
+    });
+});
+
+// The transfer button
+$("#allocateFundsButton").click(function() {
+	var allocate = [];
+	var errors = 0;
+	$("#allocFundsArea tr").each(function() {
+		var cells = $(this).find("td");
+		var pId = cells.eq(0).attr('id');
+		var inp = cells.eq(1).find("input");
+		var val = parseFloat(inp.val());
+
+		if (val < gameSettings.buyInAmount || val > parseFloat(inp.attr('max')) ) {
+			errors++;
+			cells.eq(0).css('color','red');
+		} else {
+			cells.eq(0).css('color','black');
+			allocate.push({playerId: pId, wallet: val});
+		}
+	});
+	
+	if (errors > 0) {
+		return true;
+	}
+	
+	postFundAllocation(allocate);
+	$("#modalAllocateFunds").modal('hide');
+});
+</script>

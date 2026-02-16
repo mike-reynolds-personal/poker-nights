@@ -1,0 +1,95 @@
+/* Small table display inside a info-container */
+.info-table>tbody {
+	display: table-row-group;
+	padding: 0px;
+}
+.info-table>tbody>tr {
+	text-align: center;
+	justify-content: center!important;
+	align-items: center!important;
+	display: flex;
+}
+.info-table>tbody>tr>td {
+	font-size: 0.75rem;
+	align-content: center!important;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	color: white;
+}
+.info-table>tbody>tr>th {
+	padding: 0px;
+	color: gray;
+	font-size: 0.9rem;
+    flex-grow: 1;
+	flex-basis: 0;
+}
+
+.info-container, .player-card-container, .chat-container, .system-message-container {
+	border: 1px solid slategrey;
+    border-radius: 12px;
+    background-color: #292b2c;
+	padding-bottom: 0;
+    margin: 5px;
+    align-content: center;
+    display: flex !important;
+	justify-content: center;
+}
+
+.hide-info {
+    display: none !important;
+}
+
+.player-card-container, .chat-container {
+	bottom: 65px;
+	position: absolute;
+ 	font-size: 0.7rem;
+}
+.info-container {
+	min-height: 54px;
+	padding: 2px;
+	min-width: 110px;
+    position: relative;
+}
+.position-7 {
+	position: absolute;
+	left: -20px;
+}
+.position-2 {
+	position: absolute;
+	right: -20px;
+}
+.position-bottom {
+	position: absolute;
+	top: -45px;
+	right: 10%;	
+}
+.player-card-container {
+	right: 5px;
+	max-height: 180px;
+	min-height: 45px;
+	width: 210px;
+	padding: 10px;
+	margin-right: 0px;
+}
+.chat-container {
+	padding-top: 10px;
+	max-width: 280px;
+}
+
+/* Action icons as buttons */
+.fa-bell:hover {
+    cursor: pointer;
+    font-weight: 900;
+}
+.fa-bell {
+    cursor: pointer;
+    color: #ffc107!important;
+}
+.fa-comment:hover {
+    cursor: pointer;
+    font-weight: 900;
+}
+.fa-comment {
+    cursor: pointer;
+    color: #007bff!important;
+}

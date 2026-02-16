@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>Poker Rooms Now - Poker Hand Evaluator</title>
+ 	<meta name="keywords" content="Home, Poker, Private, No Rake, No Timer, Texas, holdem, free, host, poker hand evaluator, which hand wins">
+ 	<meta name="description" content="Which poker hand wins - our free hand ranking calculator">
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/webjars/font-awesome/5.13.0/css/all.css"/>
+	<link rel="stylesheet" href="/css/custom.css" />
+</head>
+
+<body>
+<h1 class="hidden-at-start">Poker Rooms Now | Hand Evaluator</h1>
+<!-- Static navbar -->
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top justify-content-center">
+	<a class="navbar-brand m-0 mr-2">
+	   <img src="/images/logo.png" width="30" height="30" alt="">
+	</a>
+    <a class="navbar-brand">Poker Rooms Now</a>
+	  <div class="collapse navbar-collapse">
+	    <ul class="navbar-nav mr-auto mt-1">
+
+	      <li class="nav-item">
+	        <a class="nav-link" href="/">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/how-to-play">How to Play</a>
+	      </li>
+	      <!-- Tools drop-down -->
+	      <li class="nav-item dropdown active">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Tools
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="/evaluator">Hand Evaluator</a>
+				<a class="dropdown-item" href="/sidepots">Side Pot Calculator</a>
+			</div>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/admin">Host Admin</a>
+	      </li>
+	      <!-- About drop-down -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          About
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="views/main/privacy.html">Privacy</a>
+				<a class="dropdown-item" href="views/main/cookies.html">Cookies</a>
+				<a class="dropdown-item" href="views/main/terms.html">Terms of Use</a>
+			</div>
+	      </li>
+	    </ul>
+  
+	  <!-- Login Controls -->
+	  <form class="form-group form-inline nav">
+	  	<button id="signin-button" class="btn btn-primary dealer-button mr-sm-2">Sign&nbsp;In</button>
+		<a id="createGame" href="/schedule-game?gameType=texas_holdem" role="button" class="btn btn-primary dealer-button mr-sm-2">Create&nbsp;Game</a>
+		<button id="logout-button" class="btn btn-primary dealer-button mr-sm-2 hidden-at-start" type="submit">Logout</button>
+	  </form>
+   </div>
+</nav><!-- End the navigation bar -->
+
+ <!-- Main content area -->
+<main class="bd-content " style="padding-top: 90px;">
+
+	<div class="jumbotron jumbotron-fluid m-4 p-4" style="border-radius: 10px">
+		<div class="container">
+			<h2 class="display-5">Hand Evaluator</h2>
+			<p class="lead">Evaluate a Texas Hold'em poker hand</p>
+
+			<p>Use our handy evaluator to check the ranking of a poker hand, or to find which of two hands wins.</p>
+			<p>Enter the two hole cards for either one or both players, along with all of the community cards to evaluate the ranks. 
+			   'Card codes' should be used, separated by a comma. These are the face value (1-9, T, J, Q, K or A) and the first letter of the
+			   suits (C=Clubs, H=Hearts, D=Diamonds and S=Spades) - so AC, TC, 9S etc</p>
+			
+			<div class="container">
+			<div class="row justify-content-center">
+				<!-- Pseudo table layout -->
+				<div class="col-8 border border-dark rounded p-1">
+					<div class="row justify-content-center">
+						<!-- player 1 -->
+						<div class="col-md-auto">
+							<div class="card text-center bg-light mb-3" style="max-width: 18rem;" id="playerCard1">
+							<div class="card-header">Player 1</div>
+							  <div class="card-body">
+							    <input id="playerCards1" type="text" style="max-width:90px" class="form-control" placeholder="2 cards">
+							  </div>
+							</div>
+						</div>
+						<div class="col-md-3"></div>
+						<!-- player 2 -->
+						<div class="col-md-auto">
+							<div class="card text-center bg-light mb-3" style="max-width: 18rem;" id="playerCard2">
+							<div class="card-header">Player 2</div>
+							  <div class="card-body">
+							    <input id="playerCards2" type="text" style="max-width:90px" class="form-control" placeholder="2 cards">
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<!-- Community cards -->
+						<div class="col-md-auto">
+							<div class="card text-center bg-light mb-3" style="max-width: 18rem;" id="communityCard">
+							<div class="card-header">Community Cards</div>
+							  <div class="card-body">
+							    <input id="tableCards" type="text" style="max-width:200px" class="form-control" placeholder="5 cards" required>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button id="evalButton" class="btn btn-primary dealer-button">Evaluate</button>
+			<div class="row justify-content-center">
+				<div class="col-md-auto">
+					<label class="form-label font-weight-bold" id="winningRank"></label>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Explanation -->
+	<a name="win-evaluation"></a>
+	<div class="jumbotron jumbotron-fluid m-4 p-4" style="border-radius: 10px">
+		<div class="container">
+			<h2 class="display-5">How does it work?</h2>
+			<p class="lead">How poker hands are evaluated</p>
+			<p>In simple terms, the winning hand is initially determined by a set of 10 ranks. Take a look
+			   at the run-down of <a href="/how-to-play#poker-hands">poker hands</a> for a visual list.</p>
+       		<p>Things become a bit more complicated when two players end up with the same 'hand', for example, both have a pair, two pairs, 
+       		   a flush etc.</p>
+       		<p>The first way a tie is broken is by the face value of the cards - a pair or trip tens would always beat sixes.</p> 
+       		<p>If the face value of two player's cards are the same, then the winning hand is decided by one or more 'kickers' - the remaining cards a player can use to make 
+       		   their hand up to the maximum of 5 cards. So for example, when a player has two pairs (four cards) then one kicker is used. In
+       		   the case of the player having a single pair, up to three kickers are used. These kickers are also judged on their face value, so the 
+       		   highest kicker breaks the tie.</p>
+       		<hr/>
+       		<p>To further complicate this, if the highest kicker for both players is actually a community card (therefore shared by both players),
+       		   then the evaluation moves to the next highest card available and so on, up to the maximum of five cards taken from the table and those held by the player.</p>
+       		<p>You will see from the <a href="/how-to-play#poker-hands">poker hands</a> that some hands already consist of five cards (everything from a straight upwards). If the
+       		   number of cards in the rank permits it, then the kicker rules still apply, so if two players have a Flush, the player with the highest
+       		   face value in the Flush takes the pot. In the case of two pairs, then the highest pair is used, unless the players share the highest pair,
+       		   at which point the tie is broken by the second pair - you get the idea!</p>
+       		<p>Straight Flush and Royal Flush don't follow the 'kicker' rules as it is only possible to have one of these hands within a 
+       		   round.</p>
+       		<hr/>
+       		<p>Don't worry too much about remembering all of the ranks and rules if you've just started playing; 
+       		   within a game at <a href="/">Poker Rooms Now</a> the <a href="/how-to-play#poker-hands">poker hands</a> list is easily accessible from the player menu, so you
+       		   can always double-check without having to ask you friends 'Is a Full House good or bad?!'</p>
+       		<p>The other big advantage is that the software always calculates the winning hand or when its actually a draw, and therefore a split-pot,
+       		   along with any side-pot calculations. To learn more about side-pots, then check out our <a href="/sidepots">Side-Pot Calculator</a></p>
+       	</div>
+	</div>
+</main>
+
+    <!-- ================================================= -->
+	<!-- Placed at the end of the document so the pages load faster -->
+    <script src="/webjars/popper.js/umd/popper.min.js"></script>
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+	<script src="/js/session.js"></script>
+	<script src="/js/hand-eval.js"></script>
+</body>
+</html>

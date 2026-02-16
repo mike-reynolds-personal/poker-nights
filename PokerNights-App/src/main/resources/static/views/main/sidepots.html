@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>Poker Rooms Now - Side Pot Calculator</title>
+ 	<meta name="keywords" content="Home, Poker, Private, No Rake, No Timer, Texas, holdem, free, host, poker side pots, split pots">
+ 	<meta name="description" content="Easily calculate poker side-pot values">
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/webjars/font-awesome/5.13.0/css/all.css"/>
+	<link rel="stylesheet" href="/css/custom.css" />
+	
+	
+</head>
+
+<body>
+<h1 class="hidden-at-start">Poker Rooms Now | Sidepot Calculator</h1>
+<!-- Static navbar -->
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top justify-content-center">
+	<a class="navbar-brand m-0 mr-2">
+	   <img src="/images/logo.png" width="30" height="30" alt="">
+	</a>
+    <a class="navbar-brand">Poker Rooms Now</a>
+	  <div class="collapse navbar-collapse">
+	    <ul class="navbar-nav mr-auto mt-1">
+
+	      <li class="nav-item">
+	        <a class="nav-link" href="/">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/how-to-play">How to Play</a>
+	      </li>
+	      <!-- Tools drop-down -->
+	      <li class="nav-item dropdown active">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Tools
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="/evaluator">Hand Evaluator</a>
+				<a class="dropdown-item" href="/sidepots">Side Pot Calculator</a>
+			</div>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="/admin">Host Admin</a>
+	      </li>
+	      <!-- About drop-down -->
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          About
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="views/main/privacy.html">Privacy</a>
+				<a class="dropdown-item" href="views/main/cookies.html">Cookies</a>
+				<a class="dropdown-item" href="views/main/terms.html">Terms of Use</a>
+			</div>
+	      </li>
+	    </ul>
+  
+	  <!-- Login Controls -->
+	  <form class="form-group form-inline nav">
+	  	<button id="signin-button" class="btn btn-primary dealer-button mr-sm-2">Sign&nbsp;In</button>
+		<a id="createGame" href="/schedule-game?gameType=texas_holdem" role="button" class="btn btn-primary dealer-button mr-sm-2">Create&nbsp;Game</a>
+		<button id="logout-button" class="btn btn-primary dealer-button mr-sm-2 hidden-at-start" type="submit">Logout</button>
+	  </form>
+   </div>
+</nav><!-- End the navigation bar -->
+
+ <!-- Main content area -->
+<main class="bd-content " style="padding-top: 90px;">
+
+	<div class="jumbotron jumbotron-fluid m-4 p-4" style="border-radius: 10px">
+		<div class="container">
+			<h2 class="display-5">Side Pot Calculator</h2>
+			<p class="lead">Calculate side-pot values based on the amount players have bet and their ranking</p>
+<!-- forms -->
+			<p>Use our handy side-pot calculator to easily work out how much each player has won when multiple players have bet different amounts.
+			   Side pots occur when one or more players go 'all-in' within a round, but their total stack cannot match the largest bet placed
+			   by another player. With up to nine players at a table these calculations can get pretty complex.</p>
+			<p>Enter each player's total bet and a value to indicate where they came in the overall ranking below. The higher the rank, the better their
+			   hand is relative to the other players. The highest rank equates to the best hand. If two players have the same rank they will split
+			   the relevant side-pot.</p>
+			
+			<div class="container">
+				<!-- Pseudo table layout -->
+				<div class="row">
+				<div class="col-6 border border-dark rounded p-1">
+				  <div class="row justify-content-center">
+					<div class="col-3">Player</div>
+					<div class="col-3">Bet</div>
+					<div class="col-3">Rank</div>
+				  </div>
+				  <form id="sidePotInput">
+					  <div class="form-row mb-1 justify-content-center" id="row-1">
+						<div class="col-3"><input id="pName1" type="text" class="form-control" placeholder="Name" required></div>
+						<div class="col-3"><input id="pBet1" type="number" class="form-control" placeholder="Bet" required></div>
+						<div class="col-3"><input id="pRank1" type="number" class="form-control" placeholder="Rank" required></div>
+					  </div>
+					  <div class="form-row mb-1 justify-content-center" id="row-2">
+						<div class="col-3"><input id="pName2" type="text" class="form-control" placeholder="Name" required></div>
+						<div class="col-3"><input id="pBet2" type="number" class="form-control" placeholder="Bet" required></div>
+						<div class="col-3"><input id="pRank2" type="number" class="form-control" placeholder="Rank" required></div>
+					  </div>
+					  
+				  </form>
+					<div class="form-inline" style="justify-content: space-evenly;">
+						<button id="addRowBtn" class="btn btn-primary dealer-button mt-2">Add Row</button>
+						<button id="resetRowsBtn" class="btn btn-danger dealer-button mt-2">Reset</button>
+						<button id="calcPotsBtn" class="btn btn-success dealer-button mt-2">Calculate</button>
+					</div>
+				</div>
+				<div class="col-1"></div>
+				<!-- Output area -->
+				<div class="col-5 border border-dark rounded p-1">
+					<table class="table">
+						<thead>
+							<tr><th>Name</th><th>Total</th><th>Winners</th></tr>
+						</thead>
+						<tbody id="resultOut"></tbody>
+					</table>
+				</div>
+				</div>
+ 	  	  </div>
+		</div>
+	</div>
+	
+	<!-- Explanation -->
+	<div class="jumbotron jumbotron-fluid m-4 p-4" style="border-radius: 10px">
+		<div class="container">
+			<h2 class="display-5">How does it work?</h2>
+			<p class="lead">How side pots are calculated</p>
+			<p>As mentioned above, side pots occur when one or more players cannot bet as much as an opponent - this can happen quite often in
+			   'No Limit' Texas Hold'em as a player is free to go all-in at any stage.</p>
+			<p>For example; Bob has a really good hand, but only has &pound;1.50 left in his stack, whereas everyone else left in the round has
+			   more. 'No Limit' is a very fair game in this regard as the player can bet their whole stack (1.50) and stay in the round.</p>
+			<p>Jane also thinks she has the best hand, and therefore bets all of her remaining stack (&pound;3.20).</p>
+			<p>Dave is the only player left to bet, and could bet more than both Jane and Bob, but its pointless as &pound;3.20 is the maximum he can win
+				off of anyone else (Jane).
+			   <a href="/">Poker Rooms Now</a> will automatically cap a player's bet to the largest stack of any other player.</p>
+			<p>So the River come out and Bob has the top hand - good for them. But, as he could only bet &pound;1.50, that's the maximum he can win
+			   off of the other players; so he takes &pound;4.50 - &pound;1.50 off of each player including his original bet.</p>
+			<p>Jane has the second best hand and can therefore take a maximum of &pound;3.20, less what they have already given to Bob (&pound;1.70).
+			   As Dave could only match Jane's bet, then he lost and therefore Jane takes a total of &pound;3.40.</p>
+			<hr/>
+			<p>If there was a fourth player with &pound;10.50, then Dave could have bet up to that amount and the number of side pots could have increased further,
+			   dependent on who had the higher hand. It is also possible for two players to draw on one or more side pots if they have the same ranking.
+			   If the winning player has also put in the most money (or equal to the most), then they win all of the side-pots.</p>
+			<p>This is where <a href="/">Poker Rooms Now</a> makes homes games simpler - we handle all of the side-pot calculations - 
+			   obviously this is good news, as working out multiple side pots at 1:00am can be hazardous!</p>  
+		</div>
+	</div>
+</main>
+
+    <!-- ================================================= -->
+	<!-- Placed at the end of the document so the pages load faster -->
+    <script src="/webjars/popper.js/umd/popper.min.js"></script>
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	
+	<script src="/js/session.js"></script>
+	<script src="/js/sidepots.js"></script>
+	<script src="/js/create-game.js"></script>
+</body>
+</html>

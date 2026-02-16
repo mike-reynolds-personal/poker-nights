@@ -1,0 +1,159 @@
+/*
+.player-table-area {
+	position: absolute;
+	width: 100px;
+	height: 80px;
+  	border: 1px solid white;
+}*/
+.player-chips-image {
+	width: 50px;
+	height: auto;
+}
+.player-chips-0, .player-chips-1, .player-chips-2, .player-chips-3, .player-chips-4,
+	.player-chips-5, .player-chips-6, .player-chips-7, .player-chips-8 {
+	position: absolute;
+    opacity: 100%;
+    padding: 0px;
+	font-size: 0.8rem;
+}
+
+.player-chips-0 {
+	top: 25px;
+	left: -140px;
+}
+.player-chips-1 {
+	top: -15px;
+	left: -180px;
+}
+.player-chips-2 {
+	bottom: 100px;
+	left: -155px;
+}
+.player-chips-3 {
+	top: -100px;
+	left: -25px;
+}
+.player-chips-4 {
+	top: -100px;
+	left: -25px;
+}
+.player-chips-5 {
+	top: -100px;
+	left: -25px;
+}
+.player-chips-6 {
+	right: -168px;
+	top: -100px;
+}
+.player-chips-7 {
+	top: -15px;
+	right: -180px;
+}
+.player-chips-8 {
+	left: 250px;
+	top: 20px;
+}
+
+/*------------------------*/
+.player-table-0 {
+	top: 53px;
+	left: -112px;
+	transform: rotate(45deg);
+}
+.player-table-1 {
+	left: -150px;
+	top: -20px;
+	transform: rotate(-90deg);
+}
+.player-table-2 {
+	top: -92px;
+	left: -128px;
+	transform: rotate(-45deg);
+}
+.player-table-3 {
+	top: -135px;
+	left: 10px;
+}
+.player-table-4 {
+	top: -135px;
+	left: 10px;
+}
+.player-table-5 {
+	top: -135px;
+	left: 10px;
+}
+.player-table-6 {
+	top: -72px;
+	left: 150px;
+	transform: rotate(45deg);
+}
+.player-table-7 {
+	left: 160px;
+	top: -10px;
+	transform: rotate(90deg);
+}
+.player-table-8 {
+	top: 30px;
+	left: 143px;
+	transform: rotate(-45deg);
+}
+
+/*------------------------*/
+.table-card-offset {
+	position: absolute; 
+	top:18px;
+	left:5px;
+}
+
+.player-table, .player-table-bottom, .player-table-0, .player-table-1, .player-table-2,
+.player-table-3, .player-table-4, .player-table-5, .player-table-6, .player-table-7, .player-table-8 {
+	position: absolute;
+    opacity: 100%;
+    padding: 0px;
+	min-width: 100px;
+}
+
+.playerDetail-bottom {
+	position: absolute;
+	inline-size: -webkit-fill-available;
+	inline-size: -moz-available;
+	justify-content: center;
+	bottom: 0;
+}
+
+.table-card-container {
+	width: 50px;
+}
+
+/* Settings for hover-over other player cards */
+.tableCards {
+	z-index: 2;
+}
+
+.bs-popover-auto[x-placement^="right"] .arrow::after, .bs-popover-right .arrow:after {
+  border-right-color: #292b2c;
+}
+.bs-popover-auto[x-placement^="left"] .arrow::after, .bs-popover-left .arrow:after {
+  border-left-color: #292b2c;
+}
+.bs-popover-auto[x-placement^="bottom"] .arrow::after, .bs-popover-bottom .arrow:after {
+  border-bottom-color: #292b2c;
+}
+.bs-popover-auto[x-placement^="top"] .arrow::after, .bs-popover-top .arrow:after {
+    border-top-color: #292b2c;
+}
+.popover {
+    background-color: #292b2c;
+	border: 1px solid slategrey;
+
+}
+.player-table-card {
+	padding: 0.2rem;
+    max-width: 120%;
+    height: auto;
+}
+
+.player-card {
+	width: 90px;
+	overflow: hidden !important;
+}

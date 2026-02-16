@@ -1,0 +1,35 @@
+<div id="modalStackTransfer" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:280px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Stack Transfer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+          	<form>
+				<div class="form-group">
+					<label class="form-label text-muted" for="transFromPlayer">From:</label>
+					<select id="transFromPlayer" class="form-control" required></select>
+				</div>
+				<div class="form-group">
+					<label class="form-label text-muted" for="transToPlayer">To:</label>
+					<select id="transToPlayer" class="form-control" required></select>
+				</div>
+				<div class="form-group">
+					<label class="form-label text-muted" for="transAmount">Amount:</label>
+					<input class="form-control" id="transAmount" step="0.1" type="number" min="0" required>
+				</div>
+          	</form>
+        </div>
+        </div>
+      </div>
+      <div class="modal-footer mr-0">
+         <button id="transTransfer" type="submit" class="btn btn-success">Transfer</button>
+      </div>
+    </div>
+  </div>
+</div>

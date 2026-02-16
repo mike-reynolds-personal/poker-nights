@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Cache-control" content="NO-CACHE">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Poker Rooms Now</title>
+	
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/chat_window.css" />
+	<link rel="stylesheet" href="/css/custom.css" />
+	<link rel="stylesheet" href="/css/info-containers.css" />
+	<link rel="stylesheet" href="/css/sys-msg-window.css" />
+	<link rel="stylesheet" href="/css/player_table_display.css" />
+	<link rel="stylesheet" href="/css/slider.css" />
+	<link rel="stylesheet" href="/webjars/font-awesome/5.13.0/css/all.css"/>
+	<!-- <link rel="stylesheet" href="/css/json-viewer.css" />-->
+	
+	<link rel="icon" href="/images/favicon.ico"/>
+	<script type="text/javascript">
+	var _iub = _iub || [];
+	_iub.csConfiguration = {"whitelabel":false,"lang":"en","siteId":2120925,"floatingPreferencesButtonColor":"#343a40","consentOnContinuedBrowsing":false,"cookiePolicyId":96845548, "banner":{ "acceptButtonDisplay":true,"customizeButtonDisplay":true,"position":"top","acceptButtonColor":"#0073CE","acceptButtonCaptionColor":"white","customizeButtonColor":"#212121","customizeButtonCaptionColor":"white","rejectButtonColor":"#0073CE","rejectButtonCaptionColor":"white","textColor":"white","backgroundColor":"#343a40","closeButtonDisplay":false }};
+	</script>
+	<script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
+</head>
+
+<!-- Pop-ups that can be shown from the menu -->
+<div id="instructions"></div>
+<div id="playerStats"></div>
+<div id="handRanks"></div>
+<div id="feedbackForm"></div>
+<div id="stackTransferForm"></div>
+<div id="loginRedirect"></div>
+<div id="allocateFunds"></div>
+<div id="accInfoHolder"></div>
+<div id="getSeated"></div>
+
+<body class="bg-dark">
+
+<!-- Static navbar with Dealer controls -->
+<nav class="navbar navbar-dark fixed-top justify-content-center" style="background-color: #292b2c">
+	  <a class="navbar-brand m-0">
+	     <img src="/images/logo.png" width="30" height="30" alt="">
+	  </a>
+
+	<!-- Players menu -->
+    <li class="navbar-brand nav-item dropdown p-0 m-0">
+	  <a id="userName" 
+	  	class="nav-link dropdown-toggle text-white" 
+	  	href="#" id="navbarDropdown"
+	  	data-toggle="dropdown" aria-haspopup="true" 
+	  	aria-expanded="false">Private Lounge</a>
+	  <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="min-width: 195px;">
+	  
+	  	<div id="playerMenu" class="hidden-at-start">
+		    <a id="autoBlindMenu" class="dropdown-item" href="#" title="Automatically post blinds when they're due">Auto-blind me&nbsp;<i id="autoBlindCheck" class="fas fa-check"></i></a>
+		    <a id="soundEffectsMenu" class="dropdown-item" href="#">Sound effects&nbsp;<i id="soundEffectsCheck" class="fas fa-check"></i></a>
+		    <a id="countdownSoundMenu" class="dropdown-item" href="#">Countdown sound&nbsp;<i id="countdownSoundCheck" class="fas fa-check"></i></a>
+		    <a id="emptySeatsMenu" class="dropdown-item" href="#" title="Hide empty seats">Hide empty seats&nbsp;<i id="emptySeatsCheck" class="fas fa-check"></i></a>
+		    <div class="dropdown-divider"></div>
+		    <a id="statsMenu" href="#" class="dropdown-item" title="Show the in-game stats">Game statistics</a>
+		    <div class="dropdown-divider"></div>
+	    </div>
+	    
+	    <!-- Always visible options -->
+	    <a id="screenshotMenu" href="#" class="dropdown-item" title="Copy the table view to the clipboard">Screenshot table</a>
+	    <a id="helpMenu" href="#" class="dropdown-item" title="Show the overview instructions">Instructions</a>
+	    <a id="ranksMenu" href="#" class="dropdown-item" title="Show the list of poker hand rankings">Hand ranks</a>
+	    <a id="feedbackMenu" href="#" class="dropdown-item" title="Provide feedback to PokerRoomsNow">Submit feedback</a>
+	    <div class="dropdown-divider"></div>
+	    <a id="accInfo" href="#" class="dropdown-item" title="View your current account information, including stats">Account info</a>
+	  </div>
+	</li>
+
+
+	<!-- Host only options -->
+    <li class="navbar-brand nav-item dropdown p-0 m-0">
+	  <a id="hostOptions" 
+	  	class="hidden-at-start nav-link dropdown-toggle text-white" 
+	  	href="#" id="navbarDropdown"
+	  	data-toggle="dropdown" aria-haspopup="true" 
+	  	aria-expanded="false">Host</a>
+	  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	  
+	    <a id="assignWalletsMenu" href="#" class="dropdown-item" hidden=true>Allocate wallets...</a>
+	  	<a id="doubleBlindsMenu" href="#" class="dropdown-item">Double the blinds</a>
+    	<div class="form-group form-inline px-4 mb-1">
+	    	<label for="nudegeDelayMenu" title="The delay in seconds before showing the nudge button">Nudge:</label>
+	    	<input id="nudegeDelayMenu" type="number" step="30" min="0" value="60" class="form-control-sm ml-2" style="max-width:65px">
+    	</div>
+    	<!-- 
+    	<a disabled id="practiceModeMenu" class="dropdown-item" href="#" title="Player a few practice hands and then reset stacks">Practice mode&nbsp;<i id="practiceModeCheck" class="fas fa-check" style="display:none;"></i></a>
+    	-->
+    	<a id="transferStackMenu" href="#" class="dropdown-item">Transfer funds...</a>
+    	
+    	<div class="dropdown-divider"></div>
+    	<a id="evictPlayerMenu" href="#" class="dropdown-item">Evict current player</a>
+    	<a id="completeGameMenu" href="#" class="dropdown-item" title="Cash everyone out and show the final stats">Complete game</a>
+	  </div>
+	</li>
+	
+    <!-- Dealer controls -->
+    <form id="dealerControls" class="form-group form-inline nav invisible ml-auto">
+    	 <!-- Not used, just used for spacing 
+		<button class="btn btn-outline-primary dealer-button mr-sm-2 invisible"></button>
+		-->
+		<button id="dealCards" class="btn btn-outline-primary dealer-button mr-sm-2 disabled ml-5" type="submit">Deal</button>
+    </form>
+
+	<!-- RHS cash options -->
+	<div id="cashOptions">
+		<form id="disconnectForm" class="form-group form-inline nav ml-auto">
+	   		<button id="buyIn" 
+	   			class="btn btn-primary player-button mr-sm-2" 
+	   			disabled="true" 
+	   			title="Buy back in for the set amount"
+	   			type="submit">Re-buy</button>
+		   <button id="cashOut" 
+			   	class="btn btn-outline-danger" 
+			   	disabled="true" 
+			   	title="Collect chips and disconnect"
+			   	type="submit">Cash&nbsp;Out</button>
+	    </form>
+    </div>
+  </nav><!-- Close the top navbar -->
+
+  <!-- Main content area -->
+  <main id="tableScreenArea" class="bd-content" style="padding-top: 65px;">
+	<div class="container-fluid">
+		<div class="d-flex flex-row">
+
+			<!-- Spacer column -->
+			<div class="col-md-1"></div>
+
+
+			<!-- The view of the table -->
+			<div class="col-md-11 d-flex flex-column pt-3">
+
+				<!-- The Table -->
+				<div class="poker-table d-flex flex-column w-100 align-content-center align-self-center">
+
+					<!-- Seating position layout -->
+
+					<!-- Top row (Unused) -->
+					<div class="d-flex flex-row justify-content-center"></div>
+
+					<div class="d-flex row h-100">
+
+						<!-- Left hand side of table -->
+						<div class="col-md-2 d-flex flex-column align-middle p-0">
+							<div class="d-flex text-white align-self-center flex-fill align-items-center">
+								<div id="pi-container-8" class="info-container">
+									<!-- cards -->
+									<div id="player-cards-8" class="player-table-8 tableCards" data-toggle="popover"></div>
+									<!-- Info -->
+									<div id="player-info-8" class="playerInfo"></div>
+									<!-- Chips -->
+									<div class="player-chips-8 playerChips"></div>
+								</div>
+							</div>
+							<div class="d-flex text-white flex-fill align-items-center">
+								<div id="pi-container-7" class="info-container position-7">
+									<!-- cards -->
+									<div id="player-cards-7" class="player-table-7 tableCards" data-toggle="popover"></div>
+									<!-- Info -->
+									<div id="player-info-7" class="playerInfo"></div>
+									<!-- Chips -->
+									<div class="player-chips-7 playerChips"></div>
+								</div>
+							</div>
+							<div class="d-flex text-white align-self-center flex-fill align-items-center">
+								<div id="pi-container-6" class="info-container">
+									<!-- cards -->
+									<div id="player-cards-6" class="player-table-6 tableCards" data-toggle="popover"></div>
+									<!-- Info -->
+									<div id="player-info-6" class="playerInfo"></div>
+									<!-- Chips -->
+									<div class="player-chips-6 playerChips"></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Middle Section -->
+						<div class="col-md-8 flex-column p-0">
+						
+							<!-- Current pot area -->
+							<div class="row justify-content-center pot-chip-area">
+								<div class="chip-column">
+									<img class="pot-chip-stack chips1" src="/images/chip_stack2.png"/>
+								</div>
+								<div class="chip-column">
+									<img class="pot-chip-stack chips2" src="/images/chip_stack2.png"/>
+								</div>
+								<div class="chip-column">
+									<img class="pot-chip-stack chips3" src="/images/chip_stack2.png"/>
+								</div>
+								<div class="chip-column">
+									<img class="pot-chip-stack chips4" src="/images/chip_stack2.png"/>
+								</div>
+							</div>
+							<div class="row justify-content-center">
+								<label id="currentPot" 
+									class="text-sm text-white font-italic pr-3 hidden-at-start">&pound;0.00</label>
+							</div>
+
+							<!-- Bottom 3 postions -->
+							<div class="row playerDetail-bottom">
+								<div class="col-md-3 d-flex flex-column">
+									<div id="pi-container-5" class="info-container position-bottom">
+										<!-- cards -->
+										<div id="player-cards-5" class="player-table-5 tableCards" data-toggle="popover"></div>
+										<!-- Info -->
+										<div id="player-info-5" class="playerInfo"></div>
+										<!-- Chips -->
+										<div class="player-chips-5 playerChips"></div>
+									</div>
+								</div>
+								<div class="col-md-3 d-flex flex-column">
+									<div id="pi-container-4" class="info-container position-bottom">
+										<!-- cards -->
+										<div id="player-cards-4" class="player-table-4 tableCards" data-toggle="popover"></div>
+										<!-- Info -->
+										<div id="player-info-4" class="playerInfo"></div>
+										<!-- Chips -->
+										<div class="player-chips-4 playerChips"></div>
+									</div>
+								</div>
+								<div class="col-md-3 d-flex flex-column pr-1">
+									<div id="pi-container-3" class="info-container position-bottom">
+										<!-- cards -->
+										<div id="player-cards-3" class="player-table-3 tableCards" data-toggle="popover"></div>
+										<!-- Info -->
+										<div id="player-info-3" class="playerInfo"></div>
+										<!-- Chips -->
+										<div class="player-chips-3 playerChips"></div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+
+						<!-- Right hand side of table -->
+						<div class="col-md-2 d-flex flex-column align-middle p-0">
+							<div class="d-flex text-white align-self-center flex-fill align-items-center">
+								<div id="pi-container-0" class="info-container">
+									<!-- cards -->
+									<div id="player-cards-0" class="player-table-0 tableCards" data-toggle="popover"></div>
+									<!-- Name and Info area -->
+									<div id="player-info-0" class="playerInfo"></div>
+									<!-- Chip stack -->
+									<div class="player-chips-0 playerChips"></div>
+								</div>
+							</div>
+							<div class="d-flex text-white flex-fill align-items-center">
+								<div id="pi-container-1" class="info-container position-2">
+									<!-- cards -->
+									<div id="player-cards-1" class="player-table-1 tableCards" data-toggle="popover"></div>
+									<!-- Info -->
+									<div id="player-info-1" class="playerInfo"></div>
+									<!-- Chips -->
+									<div class="player-chips-1 playerChips"></div>
+								</div>
+							</div>
+							<div class="d-flex text-white align-self-center flex-fill align-items-center">
+								<div id="pi-container-2" class="info-container">
+									<!-- cards -->
+									<div id="player-cards-2" class="player-table-2 tableCards" data-toggle="popover"></div>
+									<!-- Info -->
+									<div id="player-info-2" class="playerInfo"></div>
+									<!-- Chips -->
+									<div class="player-chips-2 playerChips"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--  The community cards -->
+					<table class="table-sm d-flex comm-card-area">
+						<tbody>
+							<tr class="align-items-center">
+								<td class="p-0"><div id="commCard1" class="comm-card-container p-0 flex-column">
+										<!-- c5 -->
+									</div></td>
+								<td class="p-0"><div id="commCard2" class="comm-card-container p-0 flex-column">
+										<!-- c4 -->
+									</div></td>
+								<td class="p-0"><div id="commCard3" class="comm-card-container p-0 flex-column">
+										<!-- c3 -->
+									</div></td>
+								<td class="p-0"><div id="commCard4" class="comm-card-container p-0 flex-column">
+										<!-- c2 -->
+									</div></td>
+								<td class="p-0"><div id="commCard5" class="comm-card-container p-0 flex-column">
+										<!-- c1 -->
+									</div></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div><!-- end of poker-table -->
+				
+				<!-- Winning pots display -->
+			  	<div id="pots-container" class="container-fluid flex-fill hidden-at-start mt-4">
+					<div class="d-flex justify-content-center">
+						<div class="info-container">
+							<table class="info-table">
+								<tbody id="potWinners"></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+			</div><!-- Close table area column -->
+		</div><!-- End of first row -->
+	 </div><!-- End of container -->
+	 <div id="screenshot-padding" class="pt-2">&nbsp;</div>
+  </main>
+
+	 	<!-- User's card area -->
+    <div class="player-card-container p-0 flex-column">
+	    <table id="userCardsTable" class="table-sm d-flex justify-content-center p-0 pl-1">
+		  <tbody><tr class="row">
+			  <td class="pt-2"><img class="player-card" id="playerCard2" /></td>
+		  	  <td class="pt-2"><img class="player-card" id="playerCard1" /></td>
+		  </tr></tbody>
+	    </table>
+
+		<div class="form-check form-check-inline d-flex justify-content-center mb-1">
+		  <input id="sittingOut" 
+		  	class="form-check-input" 
+		  	type="checkbox"
+		  	disabled>
+		  <label id="sittingOutLab" 
+		  	class="form-check-label text-white text-small pb-1" 
+		  	for="sittingOut">Sit&nbsp;out next round</label>
+		</div>
+    </div>
+
+	<!-- The System message window and Timers -->
+    <div class="system-message-container p-0 col-sm-2 d-flex flex-column">
+    	<div id="sysMessgeArea" class="system-message-area">
+			<table class="sys-msg-table p-1">
+			  <!--  Messages appended here -->
+			  <tbody id="sysMessageWindow"></tbody>
+			</table>
+		</div>
+		<label id="timeInGame" class="inGameTimer hidden-at-start"></label>
+		<label id="timeBlindUp" class="inGameTimer hidden-at-start" style="top:135px"></label>
+		<label id="timeTakeAction" class="inGameTimer hidden-at-start" style="top:165px"></label>
+	</div>
+   	
+    
+	<!-- The chat window -->
+    <div class="chat-container col-md-2 d-flex flex-column">
+		<div id="chatWindow" class="chat-box">
+		  <!--  Messages appended here -->
+		</div>
+
+		<!-- Typing area -->
+		<form class="chat-input form-group form-inline p-0">
+		    <input type="text" 
+		    	id="chatMsg"
+		    	placeholder="Type a message" 
+		    	aria-describedby="button-addon2"
+		    	class="form-control border-0 form-control-sm"
+		    	style="width: 79%">
+		      <button id="sendChatMsg"
+		      	type="submit"
+		      	class="btn btn-link">
+		      	<i class="fas fa-paper-plane fa-pull-right" aria-hidden="true"></i>
+		      </button>
+		</form>
+     </div>
+     
+
+	<!-- Player Controls along bottom (bg-light)-->
+	<nav id="playerControlBar" class="navbar navbar-custom fixed-bottom">
+		
+        <form class="form-group form-inline nav w-100">
+        <div class="mr-auto col-1"></div>
+			<button id="postBlind"
+				class="btn btn-primary player-button mr-sm-2 playerControl"
+				disabled
+				title="Post your ante"
+				type="submit">Post&nbsp;Blind</button>
+        	<button id="callHand" 
+        		class="btn btn-primary player-button mr-sm-2 playerControl" 
+        		disabled
+        		title="Match preceding bet" 
+        		type="submit">Check</button>
+            <div class="col-2 p-1 ml-4 mr-4" style="max-width:12%;">
+              <div id="betSlider" class="playerControl"></div>
+            </div>
+            <input id="betAmountLabel"
+            	class="mr-2 p-1 playerControl" 
+            	style="max-width: 75px;" 
+            	for="betSlider"
+            	disabled
+            	type="number">
+        	<button id="placeBet"		
+        		class="btn btn-primary player-button playerControl"
+        		type="submit"
+        		disabled
+				title="Total value including current bet">Bet
+			</button>
+		<!-- </form>
+		<form class="form-group form-inline nav ml-auto">
+		-->
+		<div class="ml-auto">
+			<button id="foldHand"
+				disabled
+				class="btn btn-primary player-button mr-sm-2 playerControl"
+				type="submit">Fold
+			</button>
+       		<button id="revealHand"
+        		class="btn btn-primary player-button playerControl"
+        		type="submit"
+        		disabled
+				title="If in a hand this will fold">Reveal
+			</button>
+			</div>
+          </form>
+    </nav>
+
+	<!-- warning / confirmation -->
+	<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="confirmModalTitle"></h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body" id="confirmModalBody">
+	      	<div id="jsonView"></div>
+	      </div>
+	      <div class="modal-footer">
+	        <button id="confirmModalButton" type="button" class="btn btn-primary">Confirm!</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+   <div id="cachedCards" class="hidden-at-start"></div>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+    <script src="/webjars/popper.js/umd/popper.js"></script>
+    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+	
+	<script src="/js/lib/html2canvas.min.js"></script>
+	<script src="/js/sockjs-client-1.4.0/sockjs.min.js"></script>
+	<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+		
+	<!-- Generic forms/ functions -->
+	<script src="/js/session.js"></script>
+	<script src="/js/account-info.js"></script>
+	<script src="/js/websocket-connection.js"></script>
+	<script src="/js/game-utils.js"></script>
+	
+	<!-- Game specific -->
+	<script src="/js/texas-holdem/style-formatting.js"></script>
+	<script src="/js/texas-holdem/texas-messaging.js"></script>
+	<script src="/js/texas-holdem/texas-control-setup.js"></script>
+	<script src="/js/texas-holdem/texas-controller.js"></script>
+	<script src="/js/texas-holdem/texas-table-view.js"></script>
+
+</body>
+</html>

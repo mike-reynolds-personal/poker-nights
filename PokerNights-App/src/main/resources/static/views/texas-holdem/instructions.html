@@ -1,0 +1,205 @@
+<div id="modalInstructions" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Instructions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row justify-content-center" style="max-height: 500px; overflow-y: scroll;">
+			<div class="pr-4">
+			
+			<div id="copyArea" class="p-2">
+				<p class="font-weight-bold">Overview and Controls<a href="#" id="copyInstructions" title="Copy"><i class="far fa-copy"></i></a></p>
+				<ul>
+					<li>The game is designed to emulate a fun and friendly Texas Hold'em game at home, and therefore requires additional interaction
+						over standard 'Casino' games (such as posting blinds and performing the deal).
+						The host has additional controls to keep the game running smoothly.</li>
+					<li>To get started you need to provide a name to show on the table, and the amount you've brought in your 'wallet'.
+						A typical amount would be &pound;30.00 as one would on a real night. No other player can see what you have in your wallet.
+						<b>Note:</b> Once you have run out of money in your wallet (from re-buys) then you have to cash-out and re-join with more money.</li>
+					<li>Click <button class="btn btn-success take-seat-button" style="font-size: small;" type="submit">Take&nbsp;Seat</button> to 'sit'
+						 at the table. The uername defaults to your account nick name, but you can change this if you like.</li>
+					<li>The game organiser has set a buy-in amount to sit at the table. Typically you cannot re-buy until your chip stack is empty, or less than the big-blind.
+						If you reach this unfortunate position, then you can transfer the buy-in amount from your wallet to the table using the 
+		   				<button class="btn btn-primary player-button p-1">Re-buy</button> button in the toolbar.</li>
+					 <li>To leave the game press <button class="btn btn-outline-danger p-1">Cash&nbsp;Out</button> at the end of a hand
+					 	and your current stack will be transferred back to your wallet for next time.</li>
+					<li>The dealer position moves around the table as normal, but as per a home game, each player takes it in turn 
+						to be the dealer - their job is to start a <button class="btn btn-primary p-1">New&nbsp;Game</button>
+						when everyone is ready and any re-buys have been performed.
+						<ul>
+						<li>By default, auto-blind[ing] is switched on, but you're free to toggle this off and post blinds manually each round.</li>
+						<li>Keep an eye on the Status Window in the top-right to see what actions have been performed by each user.</li>
+						<li>As with a home game, the Host can decide to increase the blinds, Evict players and complete the game for everyone.</li>
+						<li>If anyone is being particularly annoying or a bit too slow, feel free to 'nudge' them from the <i class="far fa-bell"></i> icon on their info bubble!</li>
+						</ul>
+					</li>
+					<li>The chat window broadcasts a message to everyone connected to the same game table. To send a private message, prefix
+						a player's name with <b>@</b> or click on the <i class="far fa-comment"></i> icon in the player's info bubble. For this reason, names with spaces are not permitted.</li>
+					<li>You can press <button class="btn btn-primary player-button p-1">Reveal</button> in the player toolbar at the bottom
+						of the screen to lord-it over fellow players at the end of a game. If you press it during a game, you are effectively folding - good to use when you have another
+						7-3 off-suit!</li>
+					 <li>The value in the player info bubble is the player's 'current stack' (what they have to play with). If a player goes all-in, the amount
+						 added to the table is capped to the highest value of any player stacks.</li>
+					 <li>If there are no more bets possible within a round, the application automatically completes the round and reveals the winner(s).
+					 	 If all players except one folds, then the remaining player is the winner, but their cards are not revealed.</li>
+					 <li>If you are called by a player, or you are the winner, then your cards are automatically revealed at the end of the game to prove the win.</li>
+					 <li>Timers:
+					 	<ul>
+					 	<li>By default there is no timer for a player to perform an action, but you may get 'nudged' by other players if you take too long!</li>
+					 	<li>The game organiser does have the option to set a no-action timer for a period of their choosing. If time does run out on you then an appropriate action 
+					 	    is performed, dependent on the state of the game - Post Blind, Check or Fold. No additional bets are ever placed.</li>
+					 	<li>If there is a communication issue between the client and server of less than 30 seconds, then
+					 		the application will re-connect and continue without any effect.</li>
+					 	<li>If you are disconnected for longer than 2 minutes, and the action is on you, then you will be auto-checked, or auto-folded,
+					 		dependent on whether there is a bet on the table. Additionally, your player will be set to 'Sit-out' for the next round.
+					 		If the action is on you or not, you will have to refresh the browser to rejoin the game.</li>
+					 	<li>If you are disconnected for longer than 30 minutes you will be automatically removed from the game.</li>
+					 	<li><b>These timings relate to disconnection; If you're interacting with the game and there are no comms issues then you can ignore them.</b></li>
+					 	</ul>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Release history -->
+			<div>
+				<p class="font-weight-bold">Improvements (Gm18);</p>
+				<ul>
+				<li>Implement Sit-n-go tournament games (single table only)</li>
+				<li>Add customisable action timer to auto-action players</li>
+				<li>Fix bug with player cards not always displaying</li>
+				<li>Numerous improvements to Schedule Game form (incl. new options)</li>
+				</ul>
+			</div>
+			<div>
+				<p class="font-weight-bold">Improvements (Gm17);</p>
+				<ul>
+				<li>Fix page refresh when joining table (it now doesn't)</li>
+				<li>Diagnose Ace Diamonds not displaying for some players - You will need to whitelist pokerroomsnow.com in AdBlocker</li>
+				<li>Change host message when joining a HostControlledWallet game</li>
+				<li>Fix a player being refunded all of their bet when they over-bet another player, who subsequently folds</li>
+				<li>Make empty seat display a player defined option</li>
+				<li>Add 'time in game' display</li>
+				<li>Expand the statistics display so it works with long player handles</li>
+				<li>Fix the blocking of unscheduled games</li>
+				<li>Fix game time accumulation in user account, so it does increment across all games</li>
+				</ul>
+			</div>
+			<div>
+				<p class="font-weight-bold">Improvements (Gm15);</p>
+				<ul>
+				<li>Fix player bubbles not displaying correctly on Firefox</li>
+				<li>Fix end-of-game statistics not showing or storing rebuys correctly</li>
+				<li>Add additional administration information</li>
+				<li>Add account levels for all users</li>
+				<li>Add account information with accumulative game-play timers to the table and home pages</li>
+				<li>Fix copy and screenshot functions so they work after multiple use</li>
+				<li>Add Terms of Use, Cookie and Privacy policies</li>
+				<li>Hide player bubbles that aren't populated and display on game completion</li>
+				<li>Place-holder for account upgrading</li>
+				<li>Add additional help information to the Schedule Game form</li>
+				</ul>
+			</div>
+			<div>
+				<p class="font-weight-bold">Improvements (Gm14);</p>
+				<ul>
+				<li>Add the option for the host to allocate 'wallet' amounts to players before play</li>
+				<li>Enable and disable host controls based on current state</li>
+				<li>Update side-pot calculations to accommodate more splits in a round</li>
+				<li>Implement Fisher-Yates shuffle to stop biased probability</li>
+				<li>Standardise pop-up form positioning</li>
+				<li>Implement service discovery and load balancing of services</li>
+				<li>Add Facebook log-in</li>
+				<li>Implement simple account service to track games scheduled and played</li>
+				<li>Add stats tracking across games for all players</li>
+				</ul>
+			</div>
+			<div>
+				<p class="font-weight-bold">Improvements (Gm13);</p>
+				<ul>
+				<li>Add Feedback form to menu options (PR-62)</li>
+				<li>Restrict bet value box to min and max values, providing validation</li>
+				<li>Destroy player's card pop-up correctly when they leave the game (PR-66)</li>
+				<li>Set wallet steps on 'Get Seated' to match the buy-in amount</li>
+				</ul>
+			</div>
+			<div>
+				<p class="font-weight-bold">Improvements (Gm11);</p>
+				<ul>
+				<li>Don't re-show pots at end of game on each fold or reveal (PR-56)</li>
+				<li>Fix invalid game state after player with action reveals at the end of a round (PR-58)</li>
+				<li>Stop people who are watching a game from being able to Nudge or PM actual players (PR-59)</li>
+				<li>Stop a revealed hand still being shown after the player leaves the table (PR-60)</li>
+				<li>Pre-cache all cards on load to help prevent missing cards, and add tooltip to all cards shown on table (PR-57)</li>
+				<li>Show game stats for all players, including those that have left the game (PR-63)</li>
+				<li>Re-apply game stats if a player rejoins a game after cashing out (excl. balance)</li>
+				</ul>
+			</div>
+			
+			<div>
+				<p class="font-weight-bold">Improvements (Gm9);</p>
+				<ul>
+				<li>Add additional detail to administration interface and logging to assist debugging</li>
+				<li>Fix bug where an over-bet vs all-in results in the winner receiving the difference between the two bets as well as the pot (PR-47)</li>
+				<li>Add locale specific currency formatting (PR-49)</li>
+				<li>Add zoomed display of revealed cards on hover over table cards (PR-48)</li>
+				<li>Show pot break down when a player wins by default (PR-50)</li>
+				<li>Lots of minor UI updates to improve display and state changes</li>
+				<li>Refactor client code to improve state and run synchronously</li>
+				<li>Fix slider not allowing all-in on stacks that were not divisible by the big-blind (PR-21)</li>
+				<li>Add ability for the host to transfer a value from one player's stack to another player</li>
+				<li>Add Host functionality to cash-out (evict) an inactive player (PR-53)</li> 
+				<li>Move Host options to a separate menu for clarity</li>
+				<li>Fix bug when transferring host controls to dealer or next player when original host leaves</li>
+				<li>Format http(s) urls added to the chat window as links (PR-13)</li>
+				<li>Re-write all logic for 'sit out next round' (PR-25)</li>
+				<li>Properly authenticate the websocket connection to the application, and refresh the authentication automatically when there is an active user session</li>
+				<li>Add copy-to-clipboard for the table and statistics (PR-24)</li>
+				<li>The host no longer has to use the same name when joining the table as the one set by the game organiser (for Andy!)</li>
+				<li>Add profile picture to players, or generate one if not available from IDP (PR-15)</li>
+				<li>Fix chat-head sizing, placement and switch to using profile pictures (PR-14)</li>
+				<li>Fix pot calculations when a player bets in a round but folds before the end, and the winner not receiving their stake</li>
+				</ul>
+			</div>
+			
+			<div>
+				<p class="font-weight-bold">Improvements (Gm8);</p>
+				<ul>
+				<li>Re-write hand ranking evaluation to use hash tables</li>  
+				<li>Fix issue when last player in round goes all-in after other checked, the pot still equalised (PR-36)</li>
+				<li>Add persistent storage of all player actions, and make visible through administration page (PR-16)</li>
+				<li>Improve Create Game form to include 'Notes' and a calendar invite on the email (PR-10)</li>
+				<li>Improvements to HostAdmin to include wallet details and pots for last-man-standing (PR-42, PR-41)</li>
+				<li>User Interface improvements
+				<ul>
+					<li>Add additional highlighting of the winner and their cards (PR-35)</li>
+					<li>Enable typed entry of bet value as well as slider (PR-22)</li>
+					<li>Add configurable delay for nudge button display (host only) (PR-23)</li>
+					<li>Add muting of sound effects (PR-37)</li>
+					<li>Improved table, card and chip layout for better window sizing (PR-38)</li>
+					<li>Dynamically resize community cards (PR-38)</li>
+				</ul>
+				</li>
+				</ul>
+			</div>
+
+		  </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$("#copyInstructions").off();
+$("#copyInstructions").click(function() {
+	copyToImage('copyArea');
+});
+</script>
